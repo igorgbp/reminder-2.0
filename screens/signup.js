@@ -4,34 +4,38 @@ import InputUser from "../components/inputUser";
 import * as Animatable from 'react-native-animatable';
 import { useNavigation } from "@react-navigation/native";
 import firebase from '../firebase/config'
+
 import { useContext } from "react";
 import { authContext } from "../contexts/auth";
 
-export default function Login() {
+
+export default function Signup() {
 
     const navigation = useNavigation()
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [errorLogin, setErrorLogin] = useState(false)
+    const [name, setName] = useState('')
 
-    const {loginFirebase} = useContext(authContext)
+    const [errorSignup, setErrorSignup] = useState(false)
 
-    const handleLogin = () =>{
-        loginFirebase(email, password)
+    const {signupFirebase} = useContext(authContext)
+
+    const handleSignup = () =>{
+        signupFirebase(email, password, name)
     }
 
-    // const loginFirebase = () => {
-    //     firebase.auth().signInWithEmailAndPassword(email, password)
+    // const signupFirebase = () => {
+    //     firebase.auth().createUserWithEmailAndPassword(email, password)
     //         .then((userCredential) => {
     //             const user = userCredential.user;
     //             navigation.navigate('Destino', { idUser: user.uid })
     //         })
     //         .catch((error) => {
-    //             setErrorLogin(true)
+    //             setErrorSignup(true)
     //             const errorCode = error.code;
     //             const errorMessage = error.message;
-    //         })}
+    //         });}
 
 
     return (
@@ -49,15 +53,16 @@ export default function Login() {
                 <View style={styles.formView}>
 
                     {/* inputs */}
-                    <InputUser placeHolder='Email' onChangeText={setEmail} valor={email} errorChange={setErrorLogin} />
-                    <InputUser placeHolder='Password' onChangeText={setPassword} valor={password} pass={true} errorChange={setErrorLogin}/>
+                    <InputUser placeHolder='Email' onChangeText={setEmail} valor={email} pass={false} errorChange={setErrorSignup} />
+                    <InputUser placeHolder='Password' onChangeText={setPassword} valor={password} pass={true} errorChange={setErrorSignup}/>
+                    <InputUser placeHolder='Name' onChangeText={setName} valor={name} pass={false} errorChange={setErrorSignup}/>
 
 
                     {/* erro ao logar */}
-                    <View style={styles.errorLogin}>
-                        {errorLogin === true
+                    <View style={styles.errorSignup}>
+                        {errorSignup === true
                             ?
-                            <Text style={styles.errorLoginText}>Email ou senha incorretos</Text>
+                            <Text style={styles.errorSignupText}>Email ou senha incorretos</Text>
                             :
                             <Text></Text>
                         }
@@ -65,23 +70,20 @@ export default function Login() {
 
 
                     {/* verifica se escreveu senha e email */}
-                    {email === '' || password === ''
+                    {email === '' || password === '' || name === ''
                         ?
                         <TouchableOpacity style={styles.disablebutton} disabled={true}>
-                            <Text style={{ fontSize: 16, color: '#2f2f2f' }}>Entrar</Text>
+                            <Text style={{ fontSize: 16, color: '#2f2f2f' }}>Cadastrar-se</Text>
                         </TouchableOpacity>
                         :
-                        <TouchableOpacity style={styles.enablebutton} onPress = {()=> handleLogin()}>
-                            <Text style={{ fontSize: 16 }}>Entrar</Text>
+                        <TouchableOpacity style={styles.enablebutton} onPress = {()=> handleSignup()}>
+                            <Text style={{ fontSize: 16 }}>Cadastrar-se</Text>
                         </TouchableOpacity>
                     }
 
                     {/* opção de cadastro */}
                     <View style = {styles.signupContainer}>
-                        <Text style={styles.question}>Não tem uma conta?</Text>
-                        <TouchableOpacity style={styles.signupbutton} onPress={() => navigation.navigate('Signup')}>
-                            <Text style={{fontSize: 16}}>Cadastre-se</Text>
-                        </TouchableOpacity>
+                        <Text style={styles.question} onPress={()=>navigation.goBack()}>Não tem uma conta?</Text>
                     </View>
 
 
@@ -98,8 +100,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     formView: {
-        flex: 1,
+        flex: 2,
         alignItems: 'center',
+
 
     },
     image: {
@@ -123,10 +126,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingVertical: 9,
     },
-    errorLogin: {
+    errorSignup: {
         marginBottom: 7
     },
-    errorLoginText: {
+    errorSignupText: {
         fontSize: 14,
         color: '#FE9393'
     },

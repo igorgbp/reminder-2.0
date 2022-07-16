@@ -8,7 +8,7 @@ export default function InputUser(props){
         <TextInput style = {styles.input}
             placeholder= {props.placeHolder}
             placeholderTextColor= {'#767676'}
-            onChangeText = {(text)=>{props.onChangeText(text); props.errorLoginChange(false)}}
+            onChangeText = {(text)=>{props.onChangeText(text); props.errorChange(false)}}
             secureTextEntry = {props.pass}
         >
 
