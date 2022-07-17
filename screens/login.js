@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import InputUser from "../components/inputUser";
 import * as Animatable from 'react-native-animatable';
 import { useNavigation } from "@react-navigation/native";
-import firebase from '../firebase/config'
 import { useContext } from "react";
 import { authContext } from "../contexts/auth";
 
@@ -13,25 +12,12 @@ export default function Login() {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [errorLogin, setErrorLogin] = useState(false)
 
-    const {loginFirebase} = useContext(authContext)
+    const {loginFirebase, error} = useContext(authContext)
 
     const handleLogin = () =>{
         loginFirebase(email, password)
     }
-
-    // const loginFirebase = () => {
-    //     firebase.auth().signInWithEmailAndPassword(email, password)
-    //         .then((userCredential) => {
-    //             const user = userCredential.user;
-    //             navigation.navigate('Destino', { idUser: user.uid })
-    //         })
-    //         .catch((error) => {
-    //             setErrorLogin(true)
-    //             const errorCode = error.code;
-    //             const errorMessage = error.message;
-    //         })}
 
 
     return (
@@ -49,13 +35,13 @@ export default function Login() {
                 <View style={styles.formView}>
 
                     {/* inputs */}
-                    <InputUser placeHolder='Email' onChangeText={setEmail} valor={email} errorChange={setErrorLogin} />
-                    <InputUser placeHolder='Password' onChangeText={setPassword} valor={password} pass={true} errorChange={setErrorLogin}/>
+                    <InputUser placeHolder='Email' onChangeText={setEmail} valor={email}/>
+                    <InputUser placeHolder='Password' onChangeText={setPassword} valor={password} pass={true} />
 
 
                     {/* erro ao logar */}
                     <View style={styles.errorLogin}>
-                        {errorLogin === true
+                        {error === true
                             ?
                             <Text style={styles.errorLoginText}>Email ou senha incorretos</Text>
                             :

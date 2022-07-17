@@ -1,7 +1,8 @@
 import { View, StyleSheet, ImageBackground, TouchableOpacity, Text, StatusBar } from "react-native";
-import React from "react";
+import React ,{useEffect} from "react";
 import * as Animatable from 'react-native-animatable';
 import { useNavigation } from "@react-navigation/native";
+import firebase from '../firebase/config'
 
 
 export default function Welcome() {
@@ -25,6 +26,18 @@ export default function Welcome() {
             </View>
         )
     }
+
+
+    useEffect(() => {
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+                navigation.navigate('Tabs')
+            } else {
+            }
+        }
+        )
+
+    }, [])
 
 
     return (

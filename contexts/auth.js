@@ -7,19 +7,30 @@ export const authContext = createContext({})
 function AuthProvider({children}){
 
     const [userId, setUserId] = useState()
-    const [name, setName] = useState()
+    const [error, setError] = useState(false)
 
     const navigation = useNavigation()
+
+    const database = firebase.firestore()
+
+
+    const nameAdd = (name) =>{
+        database.collection(userId).add({
+            name: name,
+            nameDoc: true
+        })
+    }
 
     const loginFirebase = (email,password) => {
         firebase.auth().signInWithEmailAndPassword(email,password)
             .then((userCredential) => {
                 const user = userCredential.user;
-                navigation.navigate('Destino')
                 setUserId(user.uid)
+                navigation.navigate('Tabs')
+                
             })
             .catch((error) => {
-                setErrorLogin(true)
+                setError(true)
                 const errorCode = error.code;
                 const errorMessage = error.message;
             }
@@ -31,20 +42,21 @@ function AuthProvider({children}){
         firebase.auth().createUserWithEmailAndPassword(email, password)
             .then((userCredential) => {
                 const user = userCredential.user;
-                navigation.navigate('Destino')
+                
                 setUserId(user.uid)
-                setName(name)
+                nameAdd(name)
+                navigation.navigate('Tabs')
             })
             
             .catch((error) => {
-                setErrorSignup(true)
+                setError(true)
                 const errorCode = error.code;
                 const errorMessage = error.message;
             });}
 
 
     return (
-        <authContext.Provider value = {{ loginFirebase, userId, signupFirebase, name}}>
+        <authContext.Provider value = {{ loginFirebase, userId, signupFirebase, error, setError}}>
             {children}
         </authContext.Provider>
     )

@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import InputUser from "../components/inputUser";
 import * as Animatable from 'react-native-animatable';
 import { useNavigation } from "@react-navigation/native";
-import firebase from '../firebase/config'
 
 import { useContext } from "react";
 import { authContext } from "../contexts/auth";
@@ -17,26 +16,12 @@ export default function Signup() {
     const [password, setPassword] = useState('')
     const [name, setName] = useState('')
 
-    const [errorSignup, setErrorSignup] = useState(false)
 
-    const {signupFirebase} = useContext(authContext)
+    const {signupFirebase, error} = useContext(authContext)
 
     const handleSignup = () =>{
         signupFirebase(email, password, name)
     }
-
-    // const signupFirebase = () => {
-    //     firebase.auth().createUserWithEmailAndPassword(email, password)
-    //         .then((userCredential) => {
-    //             const user = userCredential.user;
-    //             navigation.navigate('Destino', { idUser: user.uid })
-    //         })
-    //         .catch((error) => {
-    //             setErrorSignup(true)
-    //             const errorCode = error.code;
-    //             const errorMessage = error.message;
-    //         });}
-
 
     return (
         <ImageBackground source={require('../assets/background_login.png')} resizeMode={'cover'} style={{ flex: 1 }}>
@@ -53,14 +38,14 @@ export default function Signup() {
                 <View style={styles.formView}>
 
                     {/* inputs */}
-                    <InputUser placeHolder='Email' onChangeText={setEmail} valor={email} pass={false} errorChange={setErrorSignup} />
-                    <InputUser placeHolder='Password' onChangeText={setPassword} valor={password} pass={true} errorChange={setErrorSignup}/>
-                    <InputUser placeHolder='Name' onChangeText={setName} valor={name} pass={false} errorChange={setErrorSignup}/>
+                    <InputUser placeHolder='Email' onChangeText={setEmail} valor={email} pass={false}  />
+                    <InputUser placeHolder='Password' onChangeText={setPassword} valor={password} pass={true}/>
+                    <InputUser placeHolder='Name' onChangeText={setName} valor={name} pass={false}/>
 
 
                     {/* erro ao logar */}
                     <View style={styles.errorSignup}>
-                        {errorSignup === true
+                        {error === true
                             ?
                             <Text style={styles.errorSignupText}>Email ou senha incorretos</Text>
                             :
@@ -83,7 +68,7 @@ export default function Signup() {
 
                     {/* opção de cadastro */}
                     <View style = {styles.signupContainer}>
-                        <Text style={styles.question} onPress={()=>navigation.goBack()}>Não tem uma conta?</Text>
+                        <Text style={styles.question} onPress={()=>navigation.goBack()}>Voltar para login</Text>
                     </View>
 
 

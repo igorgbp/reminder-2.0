@@ -3,6 +3,7 @@ import Destino from "../screens/destino";
 import Login from "../screens/login";
 import Signup from "../screens/signup";
 import Welcome from "../screens/welcome";
+import Tabs from "./tab";
 
   
 
@@ -24,6 +25,11 @@ export default function Navigate(){
             <Stack.Screen
                 name='Signup'
                 component = {Signup}
+                options= {{ headerShown: false}}
+            />
+            <Stack.Screen
+                name='Tabs'
+                component = {Tabs}
                 options= {{ headerShown: false}}
             />
             <Stack.Screen
