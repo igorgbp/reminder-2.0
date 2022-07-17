@@ -1,15 +1,16 @@
 import { View, StyleSheet, ImageBackground, TouchableOpacity, Text, StatusBar } from "react-native";
-import React ,{useEffect} from "react";
+import React ,{useEffect, useContext} from "react";
 import * as Animatable from 'react-native-animatable';
 import { useNavigation } from "@react-navigation/native";
 import firebase from '../firebase/config'
 
 
 export default function Welcome() {
-
     
+
     const navigation = useNavigation()
-    // style components
+
+    // botão welcome
     const ButtonWelcome = () => {
         return (
             <TouchableOpacity style={styles.buttonwelcome}
@@ -18,6 +19,8 @@ export default function Welcome() {
             </TouchableOpacity>
         )
     }
+
+    // textos welcome
     const TextWelcome = () => {
         return (
             <View style={{ alignItems: 'center' }}>
@@ -27,18 +30,15 @@ export default function Welcome() {
         )
     }
 
-
+    // verificação se está logado
     useEffect(() => {
         firebase.auth().onAuthStateChanged(function (user) {
             if (user) {
                 navigation.navigate('Tabs')
-            } else {
+                
             }
-        }
-        )
-
+        })
     }, [])
-
 
     return (
         <ImageBackground
@@ -47,6 +47,8 @@ export default function Welcome() {
             style={{ flex: 1 }}
         >
             <StatusBar barStyle={'light-content'}/>
+
+            {/* up image */}
             <View style={styles.upView}>
                 <Animatable.Image
                     source={require('../assets/erased_logo_reminder.png')}
@@ -56,6 +58,7 @@ export default function Welcome() {
                 />
             </View>
 
+            {/* button e text */}
             <View style={styles.downView}>
                 <TextWelcome />
                 <ButtonWelcome/>

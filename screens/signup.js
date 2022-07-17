@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import InputUser from "../components/inputUser";
 import * as Animatable from 'react-native-animatable';
 import { useNavigation } from "@react-navigation/native";
-
 import { useContext } from "react";
 import { authContext } from "../contexts/auth";
 
@@ -16,7 +15,6 @@ export default function Signup() {
     const [password, setPassword] = useState('')
     const [name, setName] = useState('')
 
-
     const {signupFirebase, error} = useContext(authContext)
 
     const handleSignup = () =>{
@@ -25,7 +23,9 @@ export default function Signup() {
 
     return (
         <ImageBackground source={require('../assets/background_login.png')} resizeMode={'cover'} style={{ flex: 1 }}>
+            
             <StatusBar barStyle="light-content" backgroundColor={'#2a2a2a'} />
+            
             <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} style={{ flex: 1 }}>
                 {/* imagem logo */}
                 <View style={styles.imageView}>
@@ -35,6 +35,8 @@ export default function Signup() {
                         resizeMode='contain'
                         style={styles.image}/>
                 </View>
+
+                {/* inputs e buttons */}
                 <View style={styles.formView}>
 
                     {/* inputs */}
@@ -66,7 +68,7 @@ export default function Signup() {
                         </TouchableOpacity>
                     }
 
-                    {/* opção de cadastro */}
+                    {/* voltar para login */}
                     <View style = {styles.signupContainer}>
                         <Text style={styles.question} onPress={()=>navigation.goBack()}>Voltar para login</Text>
                     </View>
@@ -74,6 +76,7 @@ export default function Signup() {
 
                 </View>
             </KeyboardAvoidingView>
+
         </ImageBackground>
     )
 }

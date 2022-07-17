@@ -24,6 +24,7 @@ export default function Login() {
         <ImageBackground source={require('../assets/background_login.png')} resizeMode={'cover'} style={{ flex: 1 }}>
             <StatusBar barStyle="light-content" backgroundColor={'#2a2a2a'} />
             <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} style={{ flex: 1 }}>
+                
                 {/* imagem logo */}
                 <View style={styles.imageView}>
                     <Animatable.Image
@@ -32,6 +33,8 @@ export default function Login() {
                         resizeMode='contain'
                         style={styles.image}/>
                 </View>
+
+                {/* form e buttons */}
                 <View style={styles.formView}>
 
                     {/* inputs */}
@@ -50,7 +53,7 @@ export default function Login() {
                     </View>
 
 
-                    {/* verifica se escreveu senha e email */}
+                    {/* botão de entrar */}
                     {email === '' || password === ''
                         ?
                         <TouchableOpacity style={styles.disablebutton} disabled={true}>
@@ -72,6 +75,7 @@ export default function Login() {
 
 
                 </View>
+                
             </KeyboardAvoidingView>
         </ImageBackground>
     )

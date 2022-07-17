@@ -8,7 +8,8 @@ const Tab = createBottomTabNavigator()
 
 export default function Tabs () {
     return (
-        <DatesProvider>
+
+            <DatesProvider>
             <Tab.Navigator>
             <Tab.Screen
                 name='Calendar'
@@ -21,6 +22,8 @@ export default function Tabs () {
 
         </Tab.Navigator>
         </DatesProvider>
+
+        
         
     )
 }
