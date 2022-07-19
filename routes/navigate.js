@@ -1,6 +1,7 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import Destino from "../screens/destino";
 import Login from "../screens/login";
+import NewReminder from "../screens/new_reminder";
 import Signup from "../screens/signup";
 import Welcome from "../screens/welcome";
 import Tabs from "./tab";
@@ -25,6 +26,11 @@ export default function Navigate(){
             <Stack.Screen
                 name='Signup'
                 component = {Signup}
+                options= {{ headerShown: false}}
+            />
+            <Stack.Screen
+                name='New Reminder'
+                component = {NewReminder}
                 options= {{ headerShown: false}}
             />
             <Stack.Screen

@@ -1,12 +1,15 @@
-import {  View, StyleSheet, FlatList, Text } from "react-native";
+import {  View, StyleSheet, FlatList, Text, TouchableOpacity } from "react-native";
 import React, {useEffect,  useContext} from "react";
 import { authContext } from "../../contexts/auth";
+import { useNavigation } from "@react-navigation/native";
 
 export default function ReminderScreen() {
 
 
     
     const { info, userId ,findContent} = useContext(authContext)
+    const navigation = useNavigation()
+
     useEffect(()=>{
         findContent()
     },[])
@@ -17,6 +20,18 @@ export default function ReminderScreen() {
                 asdf
                 {userId}
             </Text>
+
+
+            <TouchableOpacity 
+            style = {{width: '40%',width: '40%', borderWidth: 2, borderColor: 'blue'}}
+            onPress= {()=>navigation.navigate('New Reminder')}
+            >
+                <Text>
+                    +
+                </Text>
+            </TouchableOpacity>
+
+
             <FlatList
                 style={styles.listcomp}
                 data={info}
@@ -24,6 +39,8 @@ export default function ReminderScreen() {
                     <Text> {item.ff}</Text>
                 }}
             />
+
+            
         </View>
     )
 }
