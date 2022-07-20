@@ -1,18 +1,20 @@
-import { TouchableOpacity, Text, StyleSheet } from "react-native";
+import { TouchableOpacity, Text, StyleSheet} from "react-native";
 import React from "react";
 
-export default function ButtonSave(props){
+export default function ButtonSave(props) {
+
+
     return (
-        <TouchableOpacity style = {styles.touchable}>
-        <Text style= {styles.text}>{props.text}</Text>
-    </TouchableOpacity>
+        <TouchableOpacity style={styles.touchable} onPress= {()=>props.press()}>
+            <Text style={styles.text}>{props.text}</Text>
+        </TouchableOpacity>
     )
-    
+
 }
 
 const styles = StyleSheet.create({
-    touchable:{
-        borderWidth: 2, 
+    touchable: {
+        borderWidth: 2,
         borderColor: '#4E8390',
         width: '30%',
         paddingVertical: 10,
@@ -21,8 +23,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#7DC8DA',
         alignSelf: 'center',
     },
-    text:{
-        fontSize: 15, 
+    text: {
+        fontSize: 15,
         color: '#2a2a2a',
         fontWeight: '700'
     }

@@ -2,18 +2,21 @@ import { TextInput } from "react-native"
 import { StyleSheet } from "react-native"
 
 
-export function InputReminderLarger(){
+export function InputReminderLarger(props) {
     return (
-        <TextInput style = {styles.inputLarger}>
+        <TextInput style={styles.inputLarger} multiline={true}
+            numberOfLines={Platform.OS === 'ios' ? null : 5}
+            maxHeight={(Platform.OS === 'ios') ? (20 * 5) : null}
+            onChangeText={(text) => { props.onChangeText(text) }}>
 
         </TextInput>
     )
 }
-const asdf = 'blue';
 
-export default function InputReminder(){
+
+export default function InputReminder(props) {
     return (
-        <TextInput style = {styles.input}>
+        <TextInput style={styles.input} onChangeText={(text) => { props.onChangeText(text) }}>
 
         </TextInput>
     )
@@ -21,44 +24,39 @@ export default function InputReminder(){
 
 const styles = StyleSheet.create({
     input: {
-        paddingVertical: 16,
-        borderRadius: 10,
+        paddingVertical: 15,
+        borderTopLeftRadius: 10,
+        borderTopRightRadius: 10,
         width: '90%',
         backgroundColor: '#353535',
         color: '#FFF',
-        fontSize: 18,
-        textAlign:'center',
-        // marginBottom: 7,
-        alignSelf:'center',
+        fontSize: 20,
+        textAlign: 'flex-start',
+        paddingLeft: 20,
+        alignSelf: 'center',
         borderWidth: 2,
         borderColor: '#222222',
     },
     inputLarger: {
-        paddingVertical: 45,
-        borderRadius: 10,
+        paddingBottom: 10,
+        paddingTop: 8,
+        paddingRight: 15,
+        paddingLeft: 20,
+
+        borderBottomLeftRadius: 10,
+        borderBottomRightRadius: 10,
+        
         width: '90%',
         backgroundColor: '#353535',
+
         color: '#FFF',
-        fontSize: 18,
-        textAlign:'center',
-        // marginBottom: 7,
-        // p
-        alignSelf:'center',
+        fontSize: 16,
+
+        textAlign: 'flex-start',
+        alignSelf: 'center',
+
         borderWidth: 2,
         borderColor: '#222222',
-    },
-    inputncname: {
-        width: '88%',
-        paddingVertical: 1,
-        paddingRight: 10,
-        marginTop: 18,
-        marginLeft: 10,
-        alignSelf: 'center',
-        color: '#E6E1E1',
-        fontSize: 25,
-        // borderWidth: 2, 
-        // borderColor: 'blue'
-
     },
 
 })

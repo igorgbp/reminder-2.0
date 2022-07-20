@@ -49,7 +49,6 @@ function AuthProvider({ children }) {
 
     function findContent() {
         setUserId(firebase.auth().currentUser.uid)
-    
         database.collection(firebase.auth().currentUser.uid).onSnapshot((query) => {
             const list = []
             query.forEach((doc) => {
