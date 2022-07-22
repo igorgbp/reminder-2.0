@@ -17,7 +17,7 @@ export default function Tabs() {
             <View  >
                 <Image
                     source={require('../assets/erased_logo_reminder.png')}
-                    style = {{width: 50, height: 50}}
+                    style={{ width: 50, height: 50 }}
                 />
             </View>
 
@@ -27,19 +27,26 @@ export default function Tabs() {
     return (
 
         <DatesProvider>
-            <Tab.Navigator screenOptions={{headerTitle: ()=><LogoHeader/>,
-                        headerStyle: {
-                            // justifyContent: 'center',
-                            // alignItems: 'center',
-                            backgroundColor: '#2a2a2a',
-                            shadowColor: 'transparent',
-                        }}}>
+            <Tab.Navigator screenOptions={{
+                headerTitle: () => <LogoHeader />,
+                headerStyle: {
+                    // justifyContent: 'center',
+                    // alignItems: 'center',
+                    backgroundColor: '#2a2a2a',
+                    shadowColor: 'transparent',
+                },
+                tabBarActiveTintColor: 'green',
+                tabBarStyle:{
+                    backgroundColor:'#2a2a2a',
+                    borderTopWidth: 0,
+                }
+                
+            }}>
+
                 <Tab.Screen
                     name='Calendar'
                     component={CalendarScreen}
-                    options= {{                    
-                        
-                    }}
+                    options={{}}
                 />
                 <Tab.Screen
                     name='Reminder'

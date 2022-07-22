@@ -11,6 +11,9 @@ function AuthProvider({ children }) {
     const [info, setInfo] = useState()
     const navigation = useNavigation()
     const database = firebase.firestore()
+    const [modalVisible, setModalVisible] = useState(false)
+    const [buttonSaveEnabled, setButtonSaveEnabled] = useState(false)
+
 
     const loginFirebase = (email, password) => {
         firebase.auth().signInWithEmailAndPassword(email, password)
@@ -31,7 +34,6 @@ function AuthProvider({ children }) {
         firebase.auth().createUserWithEmailAndPassword(email, password)
             .then((userCredential) => {
                 const user = userCredential.user;
-                console.log(user)
                 setUserId(user.uid)
                 database.collection(user.uid).add({
                     name: name,
@@ -55,14 +57,30 @@ function AuthProvider({ children }) {
                 list.push({ ...doc.data(), id: doc.id })
             })
             setInfo(list)
-            // console.log(list)
         })
     }
 
+    
+
 
     return (
-        <authContext.Provider value={{ loginFirebase, userId, signupFirebase, error, setError, info, findContent }}>
+        <authContext.Provider 
+        value={{ 
+            loginFirebase, 
+            userId, 
+            signupFirebase, 
+            error, 
+            setError, 
+            info, 
+            findContent,
+            modalVisible, 
+            setModalVisible,
+            buttonSaveEnabled,
+            setButtonSaveEnabled
+            }}>
+
             {children}
+
         </authContext.Provider>
     )
 }
