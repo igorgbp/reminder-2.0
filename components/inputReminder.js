@@ -7,7 +7,8 @@ export function InputReminderLarger(props) {
         <TextInput style={styles.inputLarger} multiline={true}
             numberOfLines={Platform.OS === 'ios' ? null : 5}
             maxHeight={(Platform.OS === 'ios') ? (20 * 5) : null}
-            onChangeText={(text) => { props.onChangeText(text) }}>
+            onChangeText={(text) => { props.onChangeText(text) }}
+            placeholder='Nota' placeholderTextColor={'#888'}>
 
         </TextInput>
     )
@@ -16,7 +17,9 @@ export function InputReminderLarger(props) {
 
 export default function InputReminder(props) {
     return (
-        <TextInput style={styles.input} onChangeText={(text) => { props.onChangeText(text) }}>
+        <TextInput style={styles.input} onChangeText={(text) => { props.onChangeText(text) }}
+        placeholder='Nome' placeholderTextColor={'#888'}
+        >
 
         </TextInput>
     )
@@ -28,10 +31,11 @@ const styles = StyleSheet.create({
         borderTopLeftRadius: 10,
         borderTopRightRadius: 10,
         width: '90%',
+        // paddingHorizontal: '90%', 
         backgroundColor: '#353535',
         color: '#FFF',
         fontSize: 20,
-        textAlign: 'flex-start',
+        // textAlign: 'flex-start',
         paddingLeft: 20,
         alignSelf: 'center',
         borderWidth: 2,
@@ -45,7 +49,7 @@ const styles = StyleSheet.create({
 
         borderBottomLeftRadius: 10,
         borderBottomRightRadius: 10,
-        
+
         width: '90%',
         backgroundColor: '#353535',
 

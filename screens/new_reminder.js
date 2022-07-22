@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react"
-import { View, Text, StyleSheet, KeyboardAvoidingView, StatusBar, Modal } from "react-native"
+import { View, Text, StyleSheet, KeyboardAvoidingView, StatusBar, Modal, TouchableOpacity, Switch } from "react-native"
 import ButtonSave from "../components/content_reminder"
 import InputReminder, { InputReminderLarger } from "../components/inputReminder"
 import { DateSelect } from "../components/dateTimePicker"
@@ -7,10 +7,12 @@ import { authContext } from "../contexts/auth"
 import firebase from "../firebase/config"
 
 
-export default function NewReminder() {
+export default function NewReminder(props) {
     const [inputName, setInputName] = useState('')
     const [inputNote, setInputNote] = useState('')
     const [datePicked, setDatePicked] = useState(new Date())
+
+    const [dateEnable, setDateEnable] = useState(false)
 
     const { userId } = useContext(authContext)
     const database = firebase.firestore()
@@ -26,63 +28,68 @@ export default function NewReminder() {
     }
 
     return (
-        <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} style={styles.avoidingview}>
+        <View style={styles.avoidingview}>
 
             <StatusBar barStyle='light-content' backgroundColor={'#2a2a2a'} />
-            
-                <View style={styles.view}>
 
-                    <InputReminder onChangeText={setInputName} />
-                    <InputReminderLarger onChangeText={setInputNote} />
-                    <View style={styles.pickerAndDate}>
-                        <DateSelect onChangeDate={setDatePicked} />
-                    </View>
-
+            <View style={styles.view}>
+                <InputReminder onChangeText={setInputName} />
+                <InputReminderLarger onChangeText={setInputNote} />
+                <View style={{ height: '8%' }} />
+                <View style={styles.pickerAndDate}>
+                    <Switch value={dateEnable} onValueChange={()=>setDateEnable(!dateEnable)} trackColor={{true:'#7DC8DA'}} />
+                    <DateSelect onChangeDate={setDatePicked} disabled = {dateEnable}/>
                 </View>
+
+            </View>
+            <View style={styles.saveCancelButton}>
                 <ButtonSave text='Salvar' press={Save} />
-            
+            </View>
 
-            
 
-        </KeyboardAvoidingView>
+
+
+
+        </View>
     )
 }
 const styles = StyleSheet.create({
     view: {
-        borderWidth: 2,
-        borderColor: '#222222',
-        borderRadius: 20,
-        // flex: 1,,
-        width: '90%',
-        // height:'40%',
 
-        // justifyContent: 'center',
-        paddingTop: '6%',
-        paddingBottom: '6%',
-        backgroundColor: '#262626',
+        borderRadius: 20,
+        width: '100%',
+        paddingVertical: 20,
+        backgroundColor: '#4E8390',
+        alignItems: 'stretch',
     },
     avoidingview: {
-        // borderWidth: 2,
-        // borderColor: 'red',
+        paddingVertical: 20,
+        paddingHorizontal: 20,
         // flex: 1,
-        borderWidth: 2, 
-        borderColor: 'blue',
-        width: '90%',
-        marginTop:200,
-        justifyContent: 'center',
+        alignSelf: 'center',
+        borderRadius: 20,
+        width: '100%',
+        // marginTop: 200,
+        justifyContent: 'space-around',
         backgroundColor: '#2a2a2a',
         alignItems: 'center'
     },
     pickerAndDate: {
-        borderWidth: 2,
-        borderColor: 'red',
         alignItems: 'center',
+        flexDirection: 'row',
+        justifyContent: 'space-evenly'
     },
-    modal:{
+    modal: {
         width: 50,
-        borderWidth: 2, 
-        borderColor:'blue'
+        borderWidth: 2,
+        borderColor: 'blue'
 
+    },
+    saveCancelButton: {
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        width: '100%',
+        alignItems: 'center'
     }
 
 })

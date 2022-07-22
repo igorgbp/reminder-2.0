@@ -1,4 +1,5 @@
-import { View, StyleSheet, FlatList, Text, TouchableOpacity, Modal } from "react-native";
+import { View, StyleSheet, FlatList, Text, TouchableOpacity } from "react-native";
+import Modal from "react-native-modal";
 import React, { useEffect, useContext, useState } from "react";
 import { authContext } from "../../contexts/auth";
 import { useNavigation } from "@react-navigation/native";
@@ -19,33 +20,34 @@ export default function ReminderScreen() {
 
     return (
         <View style={styles.background}>
-            <Text>
-                asdf
-                {userId}
-            </Text>
 
+            
 
-            <TouchableOpacity
-                style={{ width: '40%', width: '40%', borderWidth: 2, borderColor: 'blue' }}
-                onPress={() => setModalVisible(!modalVisible)}
-            >
-                <Text>
-                    +
-                </Text>
-            </TouchableOpacity>
-
-            <Modal style = {{backgroundColor:'red'}}onDismiss={()=>setModalVisible(!modalVisible)} visible={modalVisible}  transparent={true}>
-                <NewReminder />
+            <Modal 
+            visible={modalVisible}   
+            avoidKeyboard={true}
+            hasBackdrop={true} 
+            backdropOpacity={0.5} 
+            backdropColor= {'#000'} 
+            onBackdropPress={()=>setModalVisible(false)}
+            style = {styles.modal}>
+                <NewReminder modalvisible = {setModalVisible}/>
             </Modal>
-            <FlatList
-                style={styles.listcomp}
+            <FlatList 
+                style={styles.lista}
                 data={info}
-                renderItem={({ item }) => {
-                    <Text> {item.ff}</Text>
+                renderItem={({item}) => {
+                    return(
+                        <Text style = {{color:'#000'}}>asdf {item.name}</Text>
+                    )
+                    
                 }}
             />
 
-
+<TouchableOpacity style={{ width: '40%', width: '40%', borderWidth: 2, borderColor: 'blue' }} 
+            onPress={() => setModalVisible(!modalVisible)}>
+                <Text>+</Text>   
+            </TouchableOpacity>
         </View>
     )
 }
@@ -55,5 +57,14 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    lista:{
+        borderWidth: 2, 
+        borderColor: 'red', 
+        width: '100%',
+    },
+    modal:{
+        // borderWidth: 2, 
+        // borderColor: 'yellow'
     }
 })

@@ -55,6 +55,7 @@ function AuthProvider({ children }) {
                 list.push({ ...doc.data(), id: doc.id })
             })
             setInfo(list)
+            // console.log(list)
         })
     }
 

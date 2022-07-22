@@ -43,6 +43,7 @@ export function DateSelect(props) {
                 // disabled={dateoff}
                 themeVariant={'dark'}
                 textColor='red'
+                disabled={props.disabled}
 
             />
 
