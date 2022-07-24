@@ -14,15 +14,22 @@ export default function NewReminder() {
 
     const [dateEnable, setDateEnable] = useState(false)
 
-    const { userId, setButtonSaveEnabled } = useContext(authContext)
+    const { userId, setButtonSaveEnabled, setModalVisible } = useContext(authContext)
     const database = firebase.firestore()
+
 
     function Save() {
         return (
+            dateEnable?
             database.collection(userId).add({
                 name: inputName,
                 note: inputNote,
                 date: datePicked
+            })
+            :
+            database.collection(userId).add({
+                name: inputName,
+                note: inputNote
             })
 
 
@@ -50,10 +57,10 @@ export default function NewReminder() {
                 <View style={styles.pickerAndDate}>
 
                     <View style={styles.dateSwitch}>
-                        <Text style={{ color: '#FFF', fontSize: 16 }}>Date</Text>
+                        <Text style={{ color: '#f2e9e4', fontSize: 16 }}>Date</Text>
                         <Switch style={styles.switch} value={dateEnable}
                             onValueChange={() => setDateEnable(!dateEnable)}
-                            trackColor={{ true: '#7DC8DA' }} />
+                            trackColor={{ true: '#9a8c98' }} />
                     </View>
 
                     <DateSelect onChangeDate={setDatePicked} disabled={dateEnable} />
@@ -61,15 +68,15 @@ export default function NewReminder() {
                 </View>
 
             </View>
-            <View style={{ height: '2%' }} />
+            <View style={{ height: '5%' }} />
             <View style={styles.saveCancelButton}>
-                {/* {
-                    inputName || inputNote === ''
-                        ? <ButtonSave text='Salvar' press={Save} disabled={false} />
-                        : <ButtonSave text='Salvar' press={Save} disabled={true} />
-                } */}
 
+                <TouchableOpacity style = {{padding: 10}} onPress= {()=>setModalVisible(false)}>
+                    <Text style = {{color:'#c9ada7', fontWeight: '600', fontSize: 14}}>Cancelar</Text>
+                </TouchableOpacity>
+            
                 <ButtonSave text='Salvar' press={Save}/>
+            
             </View>
 
 
@@ -85,24 +92,18 @@ const styles = StyleSheet.create({
         paddingVertical: '2%',
         borderRadius: 20,
         width: '100%',
-        backgroundColor: '#495359',
+        backgroundColor: '#22223b',
         alignItems: 'stretch',
-        borderWidth: 2,
-        borderColor: '#2a2a2a'
     },
     avoidingview: {
 
         paddingHorizontal: '5%',
-        // flex: 1,
         alignSelf: 'center',
         paddingVertical: '0%',
-        borderWidth: 2, 
-        borderColor:'#1a1a1a',
         borderRadius: 20,
         width: '90%',
-        // marginTop: 200,
         justifyContent: 'center',
-        backgroundColor: '#4a4a4a',
+        backgroundColor: '#3F425A',
         alignItems: 'center'
     },
     pickerAndDate: {
@@ -122,9 +123,6 @@ const styles = StyleSheet.create({
     },
     switch: {
         marginLeft: 5,
-        borderWidth: 2.2,
-        borderRadius: 15,
-        borderColor: '#2a2a2a'
     },
     dateSwitch: {
         flexDirection: 'row',

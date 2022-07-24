@@ -30,28 +30,24 @@ export default function ButtonSave(props) {
 
 const styles = StyleSheet.create({
     touchable: {
-        borderWidth: 2,
-        borderColor: '#2a2a2a',
         width: '30%',
         paddingVertical: 10,
         borderRadius: 10,
         alignItems: 'center',
-        backgroundColor: '#7DC8DA',
+        backgroundColor: '#9a8c98',
         alignSelf: 'center',
     },
     touchableDisabled:{
-        borderWidth: 2,
-        borderColor: '#2a2a2a',
         width: '30%',
         paddingVertical: 10,
         borderRadius: 10,
         alignItems: 'center',
-        backgroundColor: '#6297A4',
+        backgroundColor: '#7A6E78',
         alignSelf: 'center',
     },
     text: {
         fontSize: 15,
-        color: '#2a2a2a',
+        color: '#22223b',
         fontWeight: '700'
     }
 })

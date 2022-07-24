@@ -8,7 +8,7 @@ export function InputReminderLarger(props) {
             numberOfLines={Platform.OS === 'ios' ? null : 5}
             maxHeight={(Platform.OS === 'ios') ? (20 * 5) : null}
             onChangeText={(text) => { props.onChangeText(text) }}
-            placeholder='Nota' placeholderTextColor={'#888'}
+            placeholder='Nota' placeholderTextColor={'#4a4e69'}
             value = {props.value}
             >
 
@@ -20,7 +20,7 @@ export function InputReminderLarger(props) {
 export default function InputReminder(props) {
     return (
         <TextInput style={styles.input} onChangeText={(text) => { props.onChangeText(text) }}
-        placeholder='Nome' placeholderTextColor={'#888'} value={props.value}
+        placeholder='Nome' placeholderTextColor={'#4a4e69'} value={props.value}
         >
 
         </TextInput>
@@ -33,13 +33,12 @@ const styles = StyleSheet.create({
         borderTopLeftRadius: 10,
         borderTopRightRadius: 10,
         width: '90%',
-        backgroundColor: '#353535',
-        color: '#FFF',
+        backgroundColor: '#9a8c98',
+        color: '#22223b',
         fontSize: 20,
         paddingLeft: 20,
         alignSelf: 'center',
-        borderWidth: 2,
-        borderColor: '#222222',
+
     },
     inputLarger: {
         paddingBottom: 10,
@@ -49,13 +48,11 @@ const styles = StyleSheet.create({
         borderBottomLeftRadius: 10,
         borderBottomRightRadius: 10,
         width: '90%',
-        backgroundColor: '#353535',
-        color: '#FFF',
+        backgroundColor: '#9a8c98',
+        color: '#22223b',
         fontSize: 16,
         textAlign: 'flex-start',
         alignSelf: 'center',
-        borderWidth: 2,
-        borderColor: '#222222',
     },
 
 })

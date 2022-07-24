@@ -17,7 +17,7 @@ export default function Tabs() {
             <View  >
                 <Image
                     source={require('../assets/erased_logo_reminder.png')}
-                    style={{ width: 50, height: 50 }}
+                    style={{ width: 50, height: 50, tintColor: '#f2e9e4'}}
                 />
             </View>
 
@@ -32,12 +32,12 @@ export default function Tabs() {
                 headerStyle: {
                     // justifyContent: 'center',
                     // alignItems: 'center',
-                    backgroundColor: '#2a2a2a',
+                    backgroundColor: '#22223b',
                     shadowColor: 'transparent',
                 },
                 tabBarActiveTintColor: 'green',
                 tabBarStyle:{
-                    backgroundColor:'#2a2a2a',
+                    backgroundColor:'#22223b',
                     borderTopWidth: 0,
                 },
                 headerLeft: false,

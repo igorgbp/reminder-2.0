@@ -33,7 +33,7 @@ export default function CalendarComponent() {
                         color: '#B8A7A7',
                     },
                     week: {
-                        marginTop: 7,
+                        // marginTop: 7,
                         flexDirection: 'row',
                         justifyContent: 'space-around',
                     }

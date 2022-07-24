@@ -1,28 +1,28 @@
 import { Platform } from "react-native";
 import { useState } from "react";
 import DateTimePicker from '@react-native-community/datetimepicker';
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Text } from "react-native";
 
 
 
 export function DateSelect(props) {
 
     const [pickerDate, setPickerDate] = useState(new Date())
-    const [theme, setTheme] = useState(props.disabled)
+    // const [theme, setTheme] = useState(props.disabled)
 
     const onChange = (event, date) => {
-        const currentdate = date || pickerDate;
+        let currentdate = date
         setPickerDate(currentdate);
-        console.log(pickerDate)
-        props.onChangeDate(pickerDate)
+        props.onChangeDate(currentdate)      
     }
-
-    const Theme = () =>{
+    
+    // console.log(pickerDate)
+    const Theme = () => {
         let tema
-        if (props.disabled)
-        tema  = 'dark'
-        else 
-        tema='light'
+        if (!props.disabled)
+            tema = 'light'
+        else
+            tema = 'light'
 
         return tema
     }
@@ -32,34 +32,34 @@ export function DateSelect(props) {
         Platform.OS === 'android'
             ?
             (
-                
-                    <DateTimePicker
-                        testID='dateTimePicker'
-                        value={pickerDate}
-                        mode='date'
-                        display='default'
-                        onChange={onChange}
-                    // style={styles.datenewcomp}
-                    />
-                
+
+                <DateTimePicker
+                    testID='dateTimePicker'
+                    value={pickerDate}
+                    mode='date'
+                    display='default'
+                    onChange={onChange}
+                // style={styles.datenewcomp}
+                />
+
             )
             :
-            <View style = { props.disabled ? styles.dateContainerEnable : styles.dateContainerDisable}>
+            <View style={props.disabled ? styles.dateContainerEnable : styles.dateContainerDisable}>
                 <DateTimePicker
-                testID='dateTimePicker'
-                value={pickerDate}
-                mode='date'
-                display='compact'
-                onChange={onChange}
-                style={styles.datePicker}
-                // disabled={dateoff}
-                themeVariant={Theme()}
-                textColor='red'
-                disabled={!props.disabled}
+                    testID='dateTimePicker'
+                    value={pickerDate}
+                    mode='date'
+                    display='compact'
+                    onChange={onChange}
+                    style={styles.datePicker}
+                    // disabled={dateoff}
+                    themeVariant={Theme()}
+                    textColor='red'
+                    disabled={!props.disabled}
 
-            />
+                />
             </View>
-            
+
 
 
 
@@ -79,24 +79,20 @@ const styles = StyleSheet.create({
         // alignSelf: 'center',
         // color:'red',
         width: 85,
-        
+
         borderRadius: 10
     },
-    dateContainerEnable:{
-        borderWidth: 2, 
-        borderColor: '#3a3a3a',
+    dateContainerEnable: {
         borderRadius: 12,
-        backgroundColor: '#3a3a3a',
+        backgroundColor: '#9a8c98',
         justifyContent: 'center',
         alignItems: 'center'
     },
-    dateContainerDisable:{
-        borderWidth: 2, 
-        borderColor: '#2a2a2a',
+    dateContainerDisable: {
         borderRadius: 12,
-        backgroundColor: '#3a3a3a',
+        backgroundColor: '#4a4e69',
         justifyContent: 'center',
         alignItems: 'center',
-        // opacity:0.3
+        opacity:0.2
     }
 })

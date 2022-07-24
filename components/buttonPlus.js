@@ -21,18 +21,18 @@ const styles = StyleSheet.create({
     buttonPlus:{
         position:  'absolute', 
         borderWidth: 2, 
-        borderColor: '#888', 
+        borderColor: '#22223b', 
         width: 75, 
         height: 75,
         alignItems: 'center', 
         justifyContent:'center',
         borderRadius: 100, 
-        backgroundColor: '#5a5a5a',
-        right: 38,
-        bottom: 85
+        backgroundColor: '#4a4e69',
+        right: 28,
+        bottom: 40
     },
     textPlus:{
-        color:'#FFF', 
+        color:'#c9ada7', 
         fontWeight: '700', 
         fontSize: 50,
         // fontFamily: 'Arial'

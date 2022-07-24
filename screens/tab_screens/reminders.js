@@ -31,7 +31,7 @@ export default function ReminderScreen() {
                 hasBackdrop={true}
                 backdropOpacity={modalVisible ? 0.7 : 0.701}
                 backdropColor={'#000'}
-                onBackdropPress={() => setModalVisible(false)}
+                // onBackdropPress={() => setModalVisible(false)}
                 style={styles.modal}>
                 <NewReminder />
             </Modal>
@@ -41,7 +41,7 @@ export default function ReminderScreen() {
                 hasBackdrop={true}
                 backdropOpacity={editVisible ? 0.7 : 0.701}
                 backdropColor={'#000'}
-                onBackdropPress={() => setEditVisible(false)}
+                // onBackdropPress={() => setEditVisible(false)}
                 style={styles.modal}>
                 <EditReminder item = {itemSelected}/>
                 <Text>
@@ -61,7 +61,7 @@ export default function ReminderScreen() {
                     renderItem={({ item }) => {
                         return (
 
-                            <View style={{ width: '50%', }}>
+                            <View style={{ width: '50%' }}>
                                 <ReminderCard item={item} selectedItem = {setItemSelected} />
                             </View>
                         )
@@ -79,44 +79,24 @@ export default function ReminderScreen() {
 const styles = StyleSheet.create({
     background: {
         flex: 1,
-        // justifyContent: 'center',
-        // alignItems: 'center',
-        backgroundColor: '#2a2a2a',
-
-
+        backgroundColor: '#22223b'
     },
-
     lista: {
-
-        borderWidth: 2,
-        borderColor: '#5a5a5a',
-        width: '95%',
+        width: '97%',
         borderRadius: 19,
-        // paddingVertical: 20,
-        // flexDirection: 'row',
-
-
-
-    },
-
-    modal: {
-        // borderWidth: 2, 
-        // borderColor: 'yellow'
     },
     textContainer: {
         justifyContent: 'center',
         alignSelf: 'center'
     },
     flatlistContainer: {
-        // flex:15,
         width: '100%',
-        height: '92%',
+        height: '90%',
         alignItems: 'center',
-        paddingVertical: 2
     },
     textTitleReminders: {
         fontSize: 18,
-        color: '#FFF',
+        color: '#f2e9e4',
         fontFamily: 'Arial',
         padding: 10,
 

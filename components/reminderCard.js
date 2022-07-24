@@ -1,64 +1,107 @@
-import { Text, TouchableOpacity, StyleSheet, View } from "react-native";
+import { Text, TouchableOpacity, StyleSheet, View, ImageBackground } from "react-native";
 import React, { useState } from "react";
 import { useContext } from "react";
 import { authContext } from "../contexts/auth";
+import Icon from 'react-native-vector-icons/Foundation';
+
 
 export default function ReminderCard(props) {
-    
-    const {deleteReminder, setEditVisible} = useContext(authContext)
-    
-    
-    let document = props.item
-    let d = new Date(document.date.seconds)
-    let data = d.toString()
-    // const [docDateReminder, setDocDateReminder] = useState(d.getFullYear())
-    // setdatetest(new Date(document.date).getDate())
 
-    // const DateReminderCard = () =>{
-    //     let dateConverted = new Date(document.date.seconds)
-    //     console.log('j      j       j       j       j       j       j')
-    //     console.log(dateConverted.getDate())
-    //     // return (
-    //     //     dateConverted
-    //     // )
-    // }
+    const { deleteReminder, setEditVisible, dateEnable } = useContext(authContext)
+
+
+    let document = props.item
+
+    let dateString
+    if (document.date != null) {
+        let dateDocument = new Date(document.date.seconds * 1000)
+        dateString = dateDocument.getDate() + '/' + (dateDocument.getMonth() + 1) + '/' + dateDocument.getFullYear()
+    }
+
+
+
     return (
-        <TouchableOpacity style={styles.reminderContainer} onPress= {()=>{setEditVisible(true); props.selectedItem(document)}} >
-            <View >
-                <Text style={styles.titulo} numberOfLines={2}>
-                    {document.name}
-                </Text>
-                <Text numberOfLines={2}>
-                    {document.note}
-                </Text>
-                <Text numberOfLines={2}>
-                    {data}
-                </Text>
-                <TouchableOpacity style = {{borderWidth: 2, borderColor: 'blue', width: '20%'}}
-                onPress={()=>deleteReminder(document.id)}>
-                    <Text style = {{fontSize:20, color: '#2f28'}}>
-                        excluir
-                    </Text>
-                </TouchableOpacity>
+        <TouchableOpacity style={styles.reminderContainer} onPress={() => { setEditVisible(true); props.selectedItem(document) }} >
+
+
+            <Text style={styles.titulo} numberOfLines={2}>
+                {document.name}
+            </Text>
+            <View style = {{height: '8%'}}/>
+            <View style={styles.down}>
+                {
+                    dateString != null
+                        ?
+                        <Text numberOfLines={2} style={styles.textDate}>
+                            {dateString}
+                        </Text>
+                        : <View style={{ height: '6%' }} />
+                }
+                <View style={{ flexDirection: 'row', alignSelf: 'flex-end' }}>
+
+                    <TouchableOpacity
+                        style={styles.iconTrash}>
+                        <Text >
+                            <Icon name="check" size={40} color="#4a4e69" />
+
+                        </Text>
+                    </TouchableOpacity>
+                    <View style={{ width: '3%' }} />
+                    <TouchableOpacity style={styles.iconTrash}
+                        onPress={() => deleteReminder(document.id)}>
+                        <Text >
+                            <Icon name="trash" size={40} color="#4a4e69" />
+
+                        </Text>
+
+
+                    </TouchableOpacity>
+
+                </View>
             </View>
 
-        </TouchableOpacity>
+
+        </TouchableOpacity >
     )
 }
 
 const styles = StyleSheet.create({
     titulo: {
-        color: '#FFF',
-        fontSize: 20
+        color: '#f2e9e4',
+        fontSize: 22,
+        fontWeight: '600', 
+        paddingLeft: 5
     },
     reminderContainer: {
-        backgroundColor: '#5a5a5a',
-        padding: 10,
-        marginBottom: 5,
-        borderRadius: 14,
+        // marginBottom: 5,
         width: '95%',
         alignSelf: 'center',
-        borderWidth: 2, 
-        borderColor: '#3a3a3a',
+        backgroundColor: '#3F425A',
+        borderRadius: 18,
+        padding: 10,
+        // borderWidth: 2
+    },
+    iconTrash: {
+        width: 40,
+        height: 40,
+        alignSelf: 'flex-end',
+        backgroundColor: '#c9ada7',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 10
+    },
+    down: {
+        // borderWidth: 2,
+        borderColor: 'yellow',
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+    },
+    textDate:{ 
+        paddingVertical: 4, 
+        color: '#f2e9e4' ,
+        fontWeight: '700'
+
+
     }
 })

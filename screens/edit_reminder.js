@@ -13,12 +13,13 @@ export default function EditReminder(props) {
 
     const [dateEnable, setDateEnable] = useState(false)
 
-    const { userId, setButtonSaveEnabled, actualItemName, actualItemNote } = useContext(authContext)
-    // console.log()
+    const { userId, setButtonSaveEnabled, setEditVisible } = useContext(authContext)
+
     const [inputName, setInputName] = useState(props.item.name)
     const [inputNote, setInputNote] = useState(props.item.note)
+    console.log(props.item.date)
     const database = firebase.firestore()
-    // console.log()
+
 
     function Update() {
         return (
@@ -44,9 +45,9 @@ export default function EditReminder(props) {
             <StatusBar barStyle='light-content' backgroundColor={'#2a2a2a'} />
             <View style={styles.view}>
 
-                <InputReminder onChangeText= {setInputName} value= {inputName}/>
+                <InputReminder onChangeText={setInputName} value={inputName} />
                 <View style={{ height: '2%' }} />
-                <InputReminderLarger onChangeText= {setInputNote} value= {inputNote}/>
+                <InputReminderLarger onChangeText={setInputNote} value={inputNote} />
 
                 <View style={{ height: '8%' }} />
 
@@ -66,6 +67,11 @@ export default function EditReminder(props) {
             </View>
             <View style={{ height: '2%' }} />
             <View style={styles.saveCancelButton}>
+
+                <TouchableOpacity style={{ padding: 10 }} onPress={() => setEditVisible(false)}>
+                    <Text style={{ color: '#c9ada7', fontWeight: '600', fontSize: 14 }}>Cancelar</Text>
+                </TouchableOpacity>
+
                 <ButtonSave text='Salvar' press={Update} />
             </View>
 
@@ -99,7 +105,7 @@ const styles = StyleSheet.create({
         width: '90%',
         // marginTop: 200,
         justifyContent: 'center',
-        backgroundColor: 'red',
+        backgroundColor: '#4a4a4a',
         alignItems: 'center'
     },
     pickerAndDate: {
