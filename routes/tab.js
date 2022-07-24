@@ -39,7 +39,9 @@ export default function Tabs() {
                 tabBarStyle:{
                     backgroundColor:'#2a2a2a',
                     borderTopWidth: 0,
-                }
+                },
+                headerLeft: false,
+                
                 
             }}>
 
@@ -51,6 +53,7 @@ export default function Tabs() {
                 <Tab.Screen
                     name='Reminder'
                     component={ReminderScreen}
+                    options= {{}}
                 />
 
             </Tab.Navigator>

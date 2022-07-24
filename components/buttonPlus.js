@@ -9,7 +9,6 @@ export default function ButtonPlus() {
         <TouchableOpacity style={styles.buttonPlus}
             onPress={() => setModalVisible(true)}
             activeOpacity={0.8}
-
             >
             <Text style={styles.textPlus}>+</Text>
         </TouchableOpacity>

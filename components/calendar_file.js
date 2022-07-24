@@ -2,6 +2,7 @@ import { Calendar } from "react-native-calendars"
 import React from "react"
 import { useContext } from "react"
 import { DatesContext } from "../contexts/date"
+import { View } from "react-native"
 
 export default function CalendarComponent() {
     const { todayFormatDate, markDayPressed, pressedDay } = useContext(DatesContext)
@@ -9,6 +10,9 @@ export default function CalendarComponent() {
 
     return (
 
+
+
+        
         <Calendar
             initialDate={todayFormatDate()}
             minDate={todayFormatDate()}
@@ -16,13 +20,16 @@ export default function CalendarComponent() {
             markedDates={pressedDay}
             markingType={'multi-dot'}
             monthFormat={'MMMM'}
+            // style= {{borderWidth: 2, height: '75%',
+            // borderColor: 'yellow'}}
             theme={{
+                
                 'stylesheet.calendar.header': {
                     dayHeader: {
-                        marginTop: 0,
+                        // marginTop: 0,
                         marginBottom: 10,
                         textAlign: 'center',
-                        fontSize: 12,
+                        fontSize: 11,
                         color: '#B8A7A7',
                     },
                     week: {
@@ -34,13 +41,15 @@ export default function CalendarComponent() {
 
                 'stylesheet.calendar.main':
                 {
-                    monthView: {},
+                    monthView: {    
+                    },
                     week: {
                         flexDirection: 'row',
-                        justifyContent: 'space-around',
-                        height: '11.5%',
-                    }
+
+                    },
+
                 },
+
 
                 calendarBackground: 'transparent',
                 todayTextColor: '#F59CA5',
@@ -51,8 +60,12 @@ export default function CalendarComponent() {
                     text: {
                         marginTop: 4,
                         color: '#B8A7A7',
-                        fontSize: 18
+                        fontSize: 18,
+                        // borderWidth:2,
+                        // padding:5
+
                     },
+                    
                 },
                 textDisabledColor: '#696161',
                 monthTextColor: '#d6bfbe',
@@ -60,6 +73,7 @@ export default function CalendarComponent() {
             }}
             hideExtraDays={true}
         />
+
 
     )
 }

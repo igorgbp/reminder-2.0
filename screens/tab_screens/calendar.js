@@ -1,4 +1,4 @@
-import {View, StyleSheet } from "react-native";
+import { View, StyleSheet, Text } from "react-native";
 import React from "react";
 
 import CalendarComponent from "../../components/calendar_file";
@@ -7,10 +7,21 @@ import CalendarComponent from "../../components/calendar_file";
 export default function CalendarScreen() {
     return (
 
-            <View style = {styles.background}>
+        <View style = {{flex:1}}>
+            <View style={styles.background}>
                 {/* calendario */}
-                <CalendarComponent></CalendarComponent>
+
+                <CalendarComponent />
+                
+
             </View>
+            <View style = {{flex:1.6}}>
+                <Text>
+                    igasdçfkj
+                </Text>
+            </View>
+        </View>
+
 
 
     )
@@ -20,6 +31,7 @@ export default function CalendarScreen() {
 const styles = StyleSheet.create({
     background: {
         backgroundColor: '#2a2a2a',
-        flex: 1
+        flex: 1,
+        justifyContent: 'flex-start'
     }
 })

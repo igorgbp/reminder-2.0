@@ -40,7 +40,7 @@ export default function Navigate() {
                 <Stack.Screen
                     name='Tabs'
                     component={Tabs}
-                    options={{ headerShown: false }}
+                    options={{ headerShown: false, gestureEnabled: false}}
                 />
                 <Stack.Screen
                     name='Destino'

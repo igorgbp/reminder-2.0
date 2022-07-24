@@ -4,11 +4,11 @@ import { useContext } from "react";
 import { authContext } from "../contexts/auth";
 
 export default function ButtonSave(props) {
-    const { setModalVisible, buttonSaveEnabled } = useContext(authContext)
+    const { setModalVisible, buttonSaveEnabled, setEditVisible } = useContext(authContext)
     if (buttonSaveEnabled) {
         return (
             <TouchableOpacity style={styles.touchable}
-                onPress={() => { props.press(); setModalVisible(false) }}
+                onPress={() => { props.press(); setModalVisible(false); setEditVisible(false) }}
                 disabled={false}
             >
                 <Text style={styles.text}>{props.text}</Text>

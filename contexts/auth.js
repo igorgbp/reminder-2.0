@@ -12,8 +12,10 @@ function AuthProvider({ children }) {
     const navigation = useNavigation()
     const database = firebase.firestore()
     const [modalVisible, setModalVisible] = useState(false)
+    const [editVisible, setEditVisible] = useState(false)
     const [buttonSaveEnabled, setButtonSaveEnabled] = useState(false)
-
+    const [actualItemName, setActualItemName] = useState()
+    const [actualItemNote, setActualItemNote] = useState()
 
     const loginFirebase = (email, password) => {
         firebase.auth().signInWithEmailAndPassword(email, password)
@@ -60,6 +62,10 @@ function AuthProvider({ children }) {
         })
     }
 
+    function deleteReminder(id) {
+        database.collection(userId).doc(id).delete()
+    }
+
     
 
 
@@ -76,7 +82,14 @@ function AuthProvider({ children }) {
             modalVisible, 
             setModalVisible,
             buttonSaveEnabled,
-            setButtonSaveEnabled
+            setButtonSaveEnabled,
+            deleteReminder,
+            editVisible, 
+            setEditVisible,
+            actualItemName, 
+            setActualItemName, 
+            actualItemNote,
+            setActualItemNote
             }}>
 
             {children}

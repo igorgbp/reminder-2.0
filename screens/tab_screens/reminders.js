@@ -2,19 +2,20 @@ import { View, StyleSheet, FlatList, Text, SafeAreaView } from "react-native";
 import Modal from "react-native-modal";
 import React, { useEffect, useContext, useState } from "react";
 import { authContext } from "../../contexts/auth";
-import { useNavigation } from "@react-navigation/native";
 import NewReminder from "../new_reminder";
 import ButtonPlus from "../../components/buttonPlus";
 import ReminderCard from "../../components/reminderCard";
+import EditReminder from "../edit_reminder";
 
 export default function ReminderScreen() {
 
     // const [modalVisible, setModalVisible] = useState(false)
-
-    const { info, findContent, modalVisible, setModalVisible } = useContext(authContext)
-
+    const [itemSelected, setItemSelected ] = useState({})
+    // console.log(itemSelected)
+    const { info, findContent, modalVisible, setModalVisible, editVisible, setEditVisible } = useContext(authContext)
     useEffect(() => {
         findContent()
+        console.log(info)
     }, [])
 
 
@@ -34,6 +35,19 @@ export default function ReminderScreen() {
                 style={styles.modal}>
                 <NewReminder />
             </Modal>
+            <Modal
+                visible={editVisible}
+                avoidKeyboard={true}
+                hasBackdrop={true}
+                backdropOpacity={editVisible ? 0.7 : 0.701}
+                backdropColor={'#000'}
+                onBackdropPress={() => setEditVisible(false)}
+                style={styles.modal}>
+                <EditReminder item = {itemSelected}/>
+                <Text>
+
+                </Text>
+            </Modal>
 
             <View style={styles.textContainer}>
                 <Text style={styles.textTitleReminders}>Reminders</Text>
@@ -43,8 +57,14 @@ export default function ReminderScreen() {
                 <FlatList
                     style={styles.lista}
                     data={info}
-                    renderItem={({item}) => {
-                        return <ReminderCard item={item} />
+                    numColumns={2}
+                    renderItem={({ item }) => {
+                        return (
+
+                            <View style={{ width: '50%', }}>
+                                <ReminderCard item={item} selectedItem = {setItemSelected} />
+                            </View>
+                        )
                     }}
                 />
             </View>
@@ -72,7 +92,11 @@ const styles = StyleSheet.create({
         borderColor: '#5a5a5a',
         width: '95%',
         borderRadius: 19,
-        paddingVertical: 20
+        // paddingVertical: 20,
+        // flexDirection: 'row',
+
+
+
     },
 
     modal: {
