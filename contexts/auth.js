@@ -16,6 +16,7 @@ function AuthProvider({ children }) {
     const [buttonSaveEnabled, setButtonSaveEnabled] = useState(false)
     const [actualItemName, setActualItemName] = useState()
     const [actualItemNote, setActualItemNote] = useState()
+    const [itemSelected, setItemSelected ] = useState({})
 
     const loginFirebase = (email, password) => {
         firebase.auth().signInWithEmailAndPassword(email, password)
@@ -89,7 +90,7 @@ function AuthProvider({ children }) {
             actualItemName, 
             setActualItemName, 
             actualItemNote,
-            setActualItemNote
+            setActualItemNote,itemSelected, setItemSelected
             }}>
 
             {children}

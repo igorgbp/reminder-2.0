@@ -10,9 +10,9 @@ import EditReminder from "../edit_reminder";
 export default function ReminderScreen() {
 
     // const [modalVisible, setModalVisible] = useState(false)
-    const [itemSelected, setItemSelected ] = useState({})
+    
     // console.log(itemSelected)
-    const { info, findContent, modalVisible, setModalVisible, editVisible, setEditVisible } = useContext(authContext)
+    const { info, findContent, modalVisible, setModalVisible, editVisible, setEditVisible, itemSelected, setItemSelected } = useContext(authContext)
     useEffect(() => {
         findContent()
         console.log(info)
@@ -44,9 +44,7 @@ export default function ReminderScreen() {
                 // onBackdropPress={() => setEditVisible(false)}
                 style={styles.modal}>
                 <EditReminder item = {itemSelected}/>
-                <Text>
 
-                </Text>
             </Modal>
 
             <View style={styles.textContainer}>
@@ -58,11 +56,12 @@ export default function ReminderScreen() {
                     style={styles.lista}
                     data={info}
                     numColumns={2}
+                    columnWrapperStyle={{ height: 120, marginBottom:6}}
                     renderItem={({ item }) => {
                         return (
 
                             <View style={{ width: '50%' }}>
-                                <ReminderCard item={item} selectedItem = {setItemSelected} />
+                                <ReminderCard wid = {'95%'}item={item} selectedItem = {setItemSelected} />
                             </View>
                         )
                     }}

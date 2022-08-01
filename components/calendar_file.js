@@ -6,7 +6,7 @@ import { View } from "react-native"
 
 export default function CalendarComponent() {
     const { todayFormatDate, markDayPressed, pressedDay } = useContext(DatesContext)
-
+    const {dayComparison} = useContext(DatesContext)
 
     return (
 
@@ -16,7 +16,7 @@ export default function CalendarComponent() {
         <Calendar
             initialDate={todayFormatDate()}
             minDate={todayFormatDate()}
-            onDayPress={day => { markDayPressed(day) }}
+            onDayPress={day => { markDayPressed(day); dayComparison(day)}}
             markedDates={pressedDay}
             markingType={'multi-dot'}
             monthFormat={'MMMM'}
@@ -30,7 +30,7 @@ export default function CalendarComponent() {
                         marginBottom: 10,
                         textAlign: 'center',
                         fontSize: 11,
-                        color: '#B8A7A7',
+                        color: '#f2e9e4',
                     },
                     week: {
                         // marginTop: 7,
@@ -52,14 +52,14 @@ export default function CalendarComponent() {
 
 
                 calendarBackground: 'transparent',
-                todayTextColor: '#F59CA5',
-                selectedDayBackgroundColor: '#F59CA5',
-                selectedDayTextColor: '#2a2a2a',
+                todayTextColor: '#B48CDF',
+                selectedDayBackgroundColor: '#B48CDF',
+                selectedDayTextColor: '#22223b',
                 textDayHeaderFontSize: 14,
                 'stylesheet.day.basic': {
                     text: {
                         marginTop: 4,
-                        color: '#B8A7A7',
+                        color: '#f2e9e4',
                         fontSize: 18,
                         // borderWidth:2,
                         // padding:5
@@ -67,13 +67,13 @@ export default function CalendarComponent() {
                     },
                     
                 },
-                textDisabledColor: '#696161',
-                monthTextColor: '#d6bfbe',
-                arrowColor: '#E2D3D3',
+                textDisabledColor: '#766973',
+                monthTextColor: '#f2e9e4',
+                arrowColor: '#f2e9e4',
             }}
             hideExtraDays={true}
         />
 
 
     )
-}
+}   

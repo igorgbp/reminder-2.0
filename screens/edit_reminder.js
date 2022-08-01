@@ -8,30 +8,39 @@ import firebase from "../firebase/config"
 
 
 export default function EditReminder(props) {
+    console.log(props.item)
 
-    const [datePicked, setDatePicked] = useState(new Date())
+    const [datePicked, setDatePicked] = useState( props.item.date != null ? new Date((props.item.date.seconds)*1000) : new Date())
 
-    const [dateEnable, setDateEnable] = useState(false)
+    const [dateEnable, setDateEnable] = useState(!(props.item.date == null))
 
     const { userId, setButtonSaveEnabled, setEditVisible } = useContext(authContext)
 
     const [inputName, setInputName] = useState(props.item.name)
     const [inputNote, setInputNote] = useState(props.item.note)
-    console.log(props.item.date)
+    
     const database = firebase.firestore()
 
 
     function Update() {
         return (
+            dateEnable?
             database.collection(userId).doc(props.item.id).update({
                 name: inputName,
                 note: inputNote,
                 date: datePicked
             })
+            :
+            database.collection(userId).doc(props.item.id).update({
+                name: inputName,
+                note: inputNote,
+                date: null
+            })
 
 
         )
     }
+    
 
     if (inputName === '') setButtonSaveEnabled(false)
     if (inputName === '') setButtonSaveEnabled(false)
@@ -54,13 +63,13 @@ export default function EditReminder(props) {
                 <View style={styles.pickerAndDate}>
 
                     <View style={styles.dateSwitch}>
-                        <Text style={{ color: '#FFF', fontSize: 16 }}>Date</Text>
+                        <Text style={{ color: '#f2e9e4', fontSize: 16 }}>Date</Text>
                         <Switch style={styles.switch} value={dateEnable}
                             onValueChange={() => setDateEnable(!dateEnable)}
-                            trackColor={{ true: '#7DC8DA' }} />
+                            trackColor={{ true: '#9a8c98' }} />
                     </View>
 
-                    <DateSelect onChangeDate={setDatePicked} disabled={dateEnable} />
+                    <DateSelect previousDate = {datePicked} onChangeDate={setDatePicked} disabled={dateEnable} />
 
                 </View>
 
@@ -69,10 +78,10 @@ export default function EditReminder(props) {
             <View style={styles.saveCancelButton}>
 
                 <TouchableOpacity style={{ padding: 10 }} onPress={() => setEditVisible(false)}>
-                    <Text style={{ color: '#c9ada7', fontWeight: '600', fontSize: 14 }}>Cancelar</Text>
+                    <Text style={{ color: '#c9ada7', fontWeight: '600', fontSize: 14 }}>Cancel</Text>
                 </TouchableOpacity>
 
-                <ButtonSave text='Salvar' press={Update} />
+                <ButtonSave text='Save' press={Update} />
             </View>
 
 
@@ -88,24 +97,18 @@ const styles = StyleSheet.create({
         paddingVertical: '2%',
         borderRadius: 20,
         width: '100%',
-        backgroundColor: '#495359',
+        backgroundColor: '#22223b',
         alignItems: 'stretch',
-        borderWidth: 2,
-        borderColor: '#2a2a2a'
     },
     avoidingview: {
 
         paddingHorizontal: '5%',
-        // flex: 1,
         alignSelf: 'center',
         paddingVertical: '0%',
-        borderWidth: 2,
-        borderColor: '#1a1a1a',
         borderRadius: 20,
         width: '90%',
-        // marginTop: 200,
         justifyContent: 'center',
-        backgroundColor: '#4a4a4a',
+        backgroundColor: '#3F425A',
         alignItems: 'center'
     },
     pickerAndDate: {
@@ -125,9 +128,6 @@ const styles = StyleSheet.create({
     },
     switch: {
         marginLeft: 5,
-        borderWidth: 2.2,
-        borderRadius: 15,
-        borderColor: '#2a2a2a'
     },
     dateSwitch: {
         flexDirection: 'row',

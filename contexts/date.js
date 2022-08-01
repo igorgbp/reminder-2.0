@@ -8,12 +8,20 @@ function DatesProvider({ children }) {
     
     const [pressedDay, setPressedDay] = useState()
 
-    
-    
+    const [pressedFormat, setPressedFormat] = useState('nada')
+    const  dayComparison=(day)=>{
+
+
+        // console.log('j  j   j   j   j   j   j   ')
+            setPressedFormat(day.day + '/' + day.month + '/' + day.year)
+        //    console.log(pressedFormat)
+        
+    }
     
     function markDayPressed(day) {
         return (    
-            setPressedDay({ [day.dateString] : {selected:true} })  
+            setPressedDay({ [day.dateString] : {selected:true} }) 
+            // console.log(day.dateString) 
             )   
     }
 
@@ -31,7 +39,7 @@ function DatesProvider({ children }) {
 
 
     return (
-        <DatesContext.Provider value={{ todayFormatDate, markDayPressed, pressedDay }}>
+        <DatesContext.Provider value={{ todayFormatDate, pressedFormat, markDayPressed, pressedDay, dayComparison }}>
             {children}
         </DatesContext.Provider>
     )

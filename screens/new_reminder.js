@@ -29,14 +29,14 @@ export default function NewReminder() {
             :
             database.collection(userId).add({
                 name: inputName,
-                note: inputNote
+                note: inputNote,
+                date: null
             })
 
 
         )
     }
 
-    if (inputName==='') setButtonSaveEnabled(false)
     if (inputName==='') setButtonSaveEnabled(false)
     else setButtonSaveEnabled(true)
 
@@ -63,7 +63,7 @@ export default function NewReminder() {
                             trackColor={{ true: '#9a8c98' }} />
                     </View>
 
-                    <DateSelect onChangeDate={setDatePicked} disabled={dateEnable} />
+                    <DateSelect previousDate = {null} onChangeDate={setDatePicked} disabled={dateEnable} />
 
                 </View>
 
@@ -72,10 +72,10 @@ export default function NewReminder() {
             <View style={styles.saveCancelButton}>
 
                 <TouchableOpacity style = {{padding: 10}} onPress= {()=>setModalVisible(false)}>
-                    <Text style = {{color:'#c9ada7', fontWeight: '600', fontSize: 14}}>Cancelar</Text>
+                    <Text style = {{color:'#c9ada7', fontWeight: '600', fontSize: 14}}>Cancel</Text>
                 </TouchableOpacity>
             
-                <ButtonSave text='Salvar' press={Save}/>
+                <ButtonSave text='Save' press={Save}/>
             
             </View>
 

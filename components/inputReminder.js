@@ -8,7 +8,7 @@ export function InputReminderLarger(props) {
             numberOfLines={Platform.OS === 'ios' ? null : 5}
             maxHeight={(Platform.OS === 'ios') ? (20 * 5) : null}
             onChangeText={(text) => { props.onChangeText(text) }}
-            placeholder='Nota' placeholderTextColor={'#4a4e69'}
+            placeholder='Note' placeholderTextColor={'#4a4e69'}
             value = {props.value}
             >
 
@@ -20,7 +20,7 @@ export function InputReminderLarger(props) {
 export default function InputReminder(props) {
     return (
         <TextInput style={styles.input} onChangeText={(text) => { props.onChangeText(text) }}
-        placeholder='Nome' placeholderTextColor={'#4a4e69'} value={props.value}
+        placeholder='Name' placeholderTextColor={'#4a4e69'} value={props.value}
         >
 
         </TextInput>

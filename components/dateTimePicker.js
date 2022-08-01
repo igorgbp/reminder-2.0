@@ -7,8 +7,10 @@ import { View, StyleSheet, Text } from "react-native";
 
 export function DateSelect(props) {
 
-    const [pickerDate, setPickerDate] = useState(new Date())
-    // const [theme, setTheme] = useState(props.disabled)
+    let b = props.previousDate
+    console.log(b)
+    const [pickerDate, setPickerDate] = useState(props.previousDate != null ? new Date(props.previousDate) : new Date())
+    // const [pickerDate, setPickerDate] = useState(new Date())
 
     const onChange = (event, date) => {
         let currentdate = date
@@ -16,7 +18,6 @@ export function DateSelect(props) {
         props.onChangeDate(currentdate)      
     }
     
-    // console.log(pickerDate)
     const Theme = () => {
         let tema
         if (!props.disabled)
@@ -39,7 +40,6 @@ export function DateSelect(props) {
                     mode='date'
                     display='default'
                     onChange={onChange}
-                // style={styles.datenewcomp}
                 />
 
             )
@@ -52,7 +52,6 @@ export function DateSelect(props) {
                     display='compact'
                     onChange={onChange}
                     style={styles.datePicker}
-                    // disabled={dateoff}
                     themeVariant={Theme()}
                     textColor='red'
                     disabled={!props.disabled}
@@ -74,10 +73,6 @@ export function DateSelect(props) {
 const styles = StyleSheet.create({
 
     datePicker: {
-        // borderWidth: 2,
-        // borderColor: 'blue',
-        // alignSelf: 'center',
-        // color:'red',
         width: 85,
 
         borderRadius: 10
