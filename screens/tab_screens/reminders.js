@@ -29,8 +29,10 @@ export default function ReminderScreen() {
                 visible={modalVisible}
                 avoidKeyboard={true}
                 hasBackdrop={true}
+                animationOut={'bounce'}
                 backdropOpacity={modalVisible ? 0.7 : 0.701}
                 backdropColor={'#000'}
+                backdropTransitionInTiming={500}
                 // onBackdropPress={() => setModalVisible(false)}
                 style={styles.modal}>
                 <NewReminder />
@@ -46,10 +48,10 @@ export default function ReminderScreen() {
                 <EditReminder item = {itemSelected}/>
 
             </Modal>
-
+{/* 
             <View style={styles.textContainer}>
                 <Text style={styles.textTitleReminders}>Reminders</Text>
-            </View>
+            </View> */}
 
             <View style={styles.flatlistContainer}>
                 <FlatList
@@ -92,6 +94,7 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '90%',
         alignItems: 'center',
+        marginTop: '6%'
     },
     textTitleReminders: {
         fontSize: 18,

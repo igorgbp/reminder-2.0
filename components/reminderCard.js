@@ -79,7 +79,7 @@ export default function ReminderCard(props) {
                     <TouchableOpacity
                         style={styles.iconTrash}>
                         <Text >
-                            <Icon name="check" size={40} color="#4a4e69" />
+                            <Icon name="check" size={40} color="#c9ada7" />
 
                         </Text>
                     </TouchableOpacity>
@@ -87,7 +87,7 @@ export default function ReminderCard(props) {
                     <TouchableOpacity style={styles.iconTrash}
                         onPress={() => deleteReminder(document.id)}>
                         <Text >
-                            <Icon name="trash" size={40} color="#4a4e69" />
+                            <Icon name="trash" size={40} color="#c9ada7" />
 
                         </Text>
 
@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
         width: 40,
         height: 40,
         alignSelf: 'flex-end',
-        backgroundColor: '#c9ada7',
+        backgroundColor: '#333549',
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 10

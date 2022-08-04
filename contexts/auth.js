@@ -11,11 +11,11 @@ function AuthProvider({ children }) {
     const [info, setInfo] = useState()
     const navigation = useNavigation()
     const database = firebase.firestore()
+    const [optionsVisible, setOptionsVisible] = useState(false)
     const [modalVisible, setModalVisible] = useState(false)
     const [editVisible, setEditVisible] = useState(false)
     const [buttonSaveEnabled, setButtonSaveEnabled] = useState(false)
-    const [actualItemName, setActualItemName] = useState()
-    const [actualItemNote, setActualItemNote] = useState()
+    let name;
     const [itemSelected, setItemSelected ] = useState({})
 
     const loginFirebase = (email, password) => {
@@ -24,6 +24,7 @@ function AuthProvider({ children }) {
                 const user = userCredential.user;
                 setUserId(user.uid)
                 navigation.navigate('Tabs')
+                console.log(takeName())
             })
             .catch((error) => {
                 setError(true)
@@ -31,8 +32,18 @@ function AuthProvider({ children }) {
                 const errorMessage = error.message;
             }
             )
+        
     }
 
+    // function takeName(){
+    //     database.collection(userId).onSnapshot((query) => {
+    //         let nomeUser = ''
+    //         query.forEach((doc) => {
+    //             if(doc.data)
+    //         })
+    //     })
+        
+    // }
     function signupFirebase(email, password, name) {
         firebase.auth().createUserWithEmailAndPassword(email, password)
             .then((userCredential) => {
@@ -59,6 +70,7 @@ function AuthProvider({ children }) {
             query.forEach((doc) => {
                 list.push({ ...doc.data(), id: doc.id })
             })
+
             setInfo(list)
         })
     }
@@ -67,7 +79,14 @@ function AuthProvider({ children }) {
         database.collection(userId).doc(id).delete()
     }
 
-    
+    function logOut (){
+        firebase.auth().signOut().then(() => {
+            navigation.navigate('Login')
+        }).catch((error) => {
+            console.log('error')
+        })
+    }
+ 
 
 
     return (
@@ -87,10 +106,8 @@ function AuthProvider({ children }) {
             deleteReminder,
             editVisible, 
             setEditVisible,
-            actualItemName, 
-            setActualItemName, 
-            actualItemNote,
-            setActualItemNote,itemSelected, setItemSelected
+            itemSelected, setItemSelected,
+            optionsVisible, setOptionsVisible,takeName,logOut
             }}>
 
             {children}
