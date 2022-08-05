@@ -57,7 +57,7 @@ export default function CalendarScreen() {
                 visible={optionsVisible}
                 avoidKeyboard={true}
                 hasBackdrop={true}
-                backdropOpacity={optionsVisible ? 0.77 : 0.7}
+                backdropOpacity={optionsVisible ? 0.5 : 0.51}
                 backdropColor={'#000'}
                 onBackdropPress={() => setOptionsVisible(false)}
                 style={styles.modal}>

@@ -15,7 +15,7 @@ function AuthProvider({ children }) {
     const [modalVisible, setModalVisible] = useState(false)
     const [editVisible, setEditVisible] = useState(false)
     const [buttonSaveEnabled, setButtonSaveEnabled] = useState(false)
-    let name;
+    const [nameUser, setNameUser] = useState('asdf')
     const [itemSelected, setItemSelected ] = useState({})
 
     const loginFirebase = (email, password) => {
@@ -24,7 +24,6 @@ function AuthProvider({ children }) {
                 const user = userCredential.user;
                 setUserId(user.uid)
                 navigation.navigate('Tabs')
-                console.log(takeName())
             })
             .catch((error) => {
                 setError(true)
@@ -35,15 +34,6 @@ function AuthProvider({ children }) {
         
     }
 
-    // function takeName(){
-    //     database.collection(userId).onSnapshot((query) => {
-    //         let nomeUser = ''
-    //         query.forEach((doc) => {
-    //             if(doc.data)
-    //         })
-    //     })
-        
-    // }
     function signupFirebase(email, password, name) {
         firebase.auth().createUserWithEmailAndPassword(email, password)
             .then((userCredential) => {
@@ -71,7 +61,17 @@ function AuthProvider({ children }) {
                 list.push({ ...doc.data(), id: doc.id })
             })
 
-            setInfo(list)
+            let names = list.filter((item)=>item.nameDoc==true)
+            let nameUs
+            names.forEach((doc)=>{
+                nameUs = doc.name
+            })
+
+            let content = list.filter((item)=>item.nameDoc!=true)
+            // console.log(list)
+            setNameUser(nameUs)
+            setInfo(content)
+            // info.shift()
         })
     }
 
@@ -107,7 +107,8 @@ function AuthProvider({ children }) {
             editVisible, 
             setEditVisible,
             itemSelected, setItemSelected,
-            optionsVisible, setOptionsVisible,takeName,logOut
+            optionsVisible, setOptionsVisible,
+            logOut,nameUser
             }}>
 
             {children}

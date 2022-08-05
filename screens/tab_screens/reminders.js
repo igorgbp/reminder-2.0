@@ -6,17 +6,22 @@ import NewReminder from "../new_reminder";
 import ButtonPlus from "../../components/buttonPlus";
 import ReminderCard from "../../components/reminderCard";
 import EditReminder from "../edit_reminder";
+import Options from "../options";
 
 export default function ReminderScreen() {
 
-    // const [modalVisible, setModalVisible] = useState(false)
-    
-    // console.log(itemSelected)
-    const { info, findContent, modalVisible, setModalVisible, editVisible, setEditVisible, itemSelected, setItemSelected } = useContext(authContext)
-    useEffect(() => {
-        findContent()
-        console.log(info)
-    }, [])
+
+    const { info, optionsVisible, setOptionsVisible, findContent, modalVisible, setModalVisible, editVisible, setEditVisible, itemSelected, setItemSelected } = useContext(authContext)
+    // useEffect(() => {
+    //     findContent()
+
+    // }, [])
+
+    // useEffect(()=>{
+    //     info.shift()
+    // }, [])
+   
+
 
 
 
@@ -45,25 +50,34 @@ export default function ReminderScreen() {
                 backdropColor={'#000'}
                 // onBackdropPress={() => setEditVisible(false)}
                 style={styles.modal}>
-                <EditReminder item = {itemSelected}/>
+                <EditReminder item={itemSelected} />
 
             </Modal>
-{/* 
-            <View style={styles.textContainer}>
-                <Text style={styles.textTitleReminders}>Reminders</Text>
-            </View> */}
+            
+
+            <Modal
+                visible={optionsVisible}
+                avoidKeyboard={true}
+                hasBackdrop={true}
+                backdropOpacity={optionsVisible ? 0.5 : 0.51}
+                backdropColor={'#000'}
+                onBackdropPress={() => setOptionsVisible(false)}
+                style={styles.modal}>
+                <Options/>
+            </Modal>
 
             <View style={styles.flatlistContainer}>
                 <FlatList
                     style={styles.lista}
                     data={info}
                     numColumns={2}
-                    columnWrapperStyle={{ height: 120, marginBottom:6}}
+                    columnWrapperStyle={{ height: 120, marginBottom: 6 }}
                     renderItem={({ item }) => {
+
                         return (
 
                             <View style={{ width: '50%' }}>
-                                <ReminderCard wid = {'95%'}item={item} selectedItem = {setItemSelected} />
+                                <ReminderCard wid={'95%'} item={item} selectedItem={setItemSelected} />
                             </View>
                         )
                     }}
