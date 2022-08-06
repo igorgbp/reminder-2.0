@@ -21,7 +21,7 @@ export default function InputReminder(props) {
     return (
         <TextInput style={styles.input} onChangeText={(text) => { props.onChangeText(text) }}
         placeholder='Name' placeholderTextColor={'#4a4e69'} value={props.value}
-        >
+        autoFocus={true}>
 
         </TextInput>
     )

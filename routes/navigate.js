@@ -10,9 +10,12 @@ import Tabs from "./tab";
 
 
 
+
 const Stack = createStackNavigator();
 export default function Navigate() {
     return (
+
+
 
 
 
@@ -40,7 +43,9 @@ export default function Navigate() {
                 <Stack.Screen
                     name='Tabs'
                     component={Tabs}
-                    options={{ headerShown: false, gestureEnabled: false}}
+                    options={{ headerShown: false, 
+                        gestureEnabled: false
+                    }}
                 />
                 <Stack.Screen
                     name='Destino'
@@ -48,6 +53,7 @@ export default function Navigate() {
                     options={{ headerShown: false }}
                 />
             </Stack.Navigator>
+
 
     )
 }

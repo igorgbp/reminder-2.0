@@ -21,7 +21,7 @@ export default function InputUser(props){
 }
 const styles = StyleSheet.create({
     input: {
-        paddingVertical: 16,
+        paddingVertical: '4%',
         borderRadius: 26,
         width: '70%',
         backgroundColor: '#504d4d',

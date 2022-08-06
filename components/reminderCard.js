@@ -5,6 +5,7 @@ import { authContext } from "../contexts/auth";
 import Icon from 'react-native-vector-icons/Foundation';
 import { DatesContext } from "../contexts/date";
 
+let d
 
 export function ReminderCardCalendar(props) {
 
@@ -12,6 +13,7 @@ export function ReminderCardCalendar(props) {
     // const { pressedDay, pressedFormat } = useContext(DatesContext)
 
     let document = props.item
+     d = document.done
 
     let dateString
     if (document.date != null) {
@@ -43,7 +45,7 @@ export function ReminderCardCalendar(props) {
 
 export default function ReminderCard(props) {
     
-    const { deleteReminder, setEditVisible } = useContext(authContext)
+    const { deleteReminder, setEditVisible, doneReminder } = useContext(authContext)
 
 
     let document = props.item
@@ -58,7 +60,7 @@ export default function ReminderCard(props) {
 
 
     return (
-        <TouchableOpacity style={[styles.reminderContainer, { width: props.wid, }]} onPress={() => { setEditVisible(true); props.selectedItem(document) }} >
+        <TouchableOpacity style={[styles.reminderContainer, { width: props.wid, backgroundColor: document.done?'#4A6961':'#694A5C' }]} onPress={() => { setEditVisible(true); props.selectedItem(document) }} >
 
 
             <Text style={styles.titulo} numberOfLines={2}>
@@ -76,8 +78,9 @@ export default function ReminderCard(props) {
                 }
                 <View style={{ flexDirection: 'row', alignSelf: 'flex-end' }}>
 
-                    <TouchableOpacity
-                        style={styles.iconTrash}>
+                    <TouchableOpacity style={styles.iconTrash}
+                    onPress={()=>{doneReminder(document.id, document.done)}}
+                        >
                         <Text >
                             <Icon name="check" size={40} color="#c9ada7" />
 
@@ -114,7 +117,7 @@ const styles = StyleSheet.create({
         marginBottom: 8,
         // width: '95%',
         alignSelf: 'center',
-        backgroundColor: '#3F425A',
+        // backgroundColor: '#3F425A',
         justifyContent: 'space-around',
         borderRadius: 18,
         padding: 10,

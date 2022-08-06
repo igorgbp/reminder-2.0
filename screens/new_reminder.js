@@ -24,20 +24,23 @@ export default function NewReminder() {
             database.collection(userId).add({
                 name: inputName,
                 note: inputNote,
-                date: datePicked
+                date: datePicked,
+                done: false
             })
             :
             database.collection(userId).add({
                 name: inputName,
                 note: inputNote,
-                date: null
+                date: null,
+                done: false
+
             })
 
 
         )
     }
 
-    if (inputName==='') setButtonSaveEnabled(false)
+    if (inputName=='') setButtonSaveEnabled(false)
     else setButtonSaveEnabled(true)
 
 

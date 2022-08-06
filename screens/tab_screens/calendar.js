@@ -14,12 +14,25 @@ import Options from "../options";
 
 export default function CalendarScreen() {
 
-    const { info, findContent, optionsVisible, setOptionsVisible, editVisible, setEditVisible, modalVisible, setItemSelected, itemSelected } = useContext(authContext)
-    const { pressedFormat } = useContext(DatesContext)
-    useEffect(() => {
-        findContent()
+    const {
+        info,
+        optionsVisible,
+        setOptionsVisible,
+        editVisible,
+        setEditVisible,
+        modalVisible,
+        setItemSelected,
+        itemSelected }
+        = useContext(authContext)
 
-    }, [])
+    const { pressedFormat } = useContext(DatesContext)
+
+
+    // let infoFiltered = info.filter((item) => item.done == false)
+    // console.log(infoFiltered)
+
+
+
     return (
 
         <View style={{ flex: 1, backgroundColor: '#22223b' }}>
@@ -48,7 +61,7 @@ export default function CalendarScreen() {
                 hasBackdrop={true}
                 backdropOpacity={editVisible ? 0.77 : 0.7}
                 backdropColor={'#000'}
-                onBackdropPress={() => setEditVisible(false)}
+                // onBackdropPress={() => setEditVisible(false)}
                 style={styles.modal}>
                 <EditReminder item={itemSelected} />
             </Modal>
@@ -59,9 +72,9 @@ export default function CalendarScreen() {
                 hasBackdrop={true}
                 backdropOpacity={optionsVisible ? 0.5 : 0.51}
                 backdropColor={'#000'}
-                onBackdropPress={() => setOptionsVisible(false)}
+                // onBackdropPress={() => setOptionsVisible(false)}
                 style={styles.modal}>
-                <Options/>
+                <Options />
             </Modal>
 
 

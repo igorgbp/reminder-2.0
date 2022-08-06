@@ -17,7 +17,7 @@ function AuthProvider({ children }) {
     const [buttonSaveEnabled, setButtonSaveEnabled] = useState(false)
     const [nameUser, setNameUser] = useState('asdf')
     const [itemSelected, setItemSelected ] = useState({})
-
+    const [seeDone, setSeeDone] = useState('false')
     const loginFirebase = (email, password) => {
         firebase.auth().signInWithEmailAndPassword(email, password)
             .then((userCredential) => {
@@ -79,6 +79,16 @@ function AuthProvider({ children }) {
         database.collection(userId).doc(id).delete()
     }
 
+    function doneReminder(id, docDone){
+        // console.log(docDone)
+        // console.log('aqui em cima')
+        database.collection(userId).doc(id).update(
+            {
+                done:!docDone
+            }
+        )
+    }
+
     function logOut (){
         firebase.auth().signOut().then(() => {
             navigation.navigate('Login')
@@ -108,7 +118,8 @@ function AuthProvider({ children }) {
             setEditVisible,
             itemSelected, setItemSelected,
             optionsVisible, setOptionsVisible,
-            logOut,nameUser
+            logOut,nameUser,doneReminder,
+            seeDone, setSeeDone
             }}>
 
             {children}

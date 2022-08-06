@@ -18,7 +18,7 @@ LogBox.ignoreAllLogs();//Ignore all log notifications
 
 export default function Tabs() {
     const Tab = createBottomTabNavigator()
-    const { setOptionsVisible, findContent } = useContext(authContext)
+    const { setOptionsVisible, findContent, seeDone, setSeeDone } = useContext(authContext)
 
 
     useEffect(() => {
@@ -26,17 +26,33 @@ export default function Tabs() {
 
     }, [])
 
+
     function LogoHeader() {
         return (
             <View  >
                 <Image
                     source={require('../assets/logo_png_100x100.png')}
-                    style={{ width: 70, height: 50, tintColor: '#f2e9e4' }}
+                    style={{ width: 65, height: 50, tintColor: '#f2e9e4' }}
                 />
 
             </View>
 
 
+        )
+    }
+
+    function Concluded() {
+        return (
+            <TouchableOpacity style={{ alignSelf: "center" }} onPress={() => { setSeeDone(!seeDone) }}>
+                <Text>
+                    {seeDone ?
+                        <Icon name="check-circle" size={40} color="#f2e9e4" solid />
+                        :
+                        <Icon name="check-circle" size={40} color="#f2e9e4" />
+                    }
+                </Text>
+
+            </TouchableOpacity>
         )
     }
 
@@ -63,7 +79,8 @@ export default function Tabs() {
                     backgroundColor: '#22223b',
                     shadowColor: 'transparent',
                 },
-                headerLeft: false,
+
+                headerLeft: () => <Concluded />,
                 headerRight: () => <Settings />,
 
 
@@ -79,7 +96,7 @@ export default function Tabs() {
 
                     switch (route.name) {
                         case 'Calendar':
-                            iconName = 'calendar-day';
+                            iconName = 'calendar-alt';
                             break;
                         case 'Reminder':
                             iconName = 'tasks';
@@ -104,15 +121,12 @@ export default function Tabs() {
                     name='Calendar'
                     component={CalendarScreen}
                     options={{
-
-
                     }}
                 />
                 <Tab.Screen
                     name='Reminder'
                     component={ReminderScreen}
                     options={{
-
                     }}
                 />
 

@@ -1,5 +1,5 @@
 import { View, StyleSheet, ImageBackground, TouchableOpacity, Text, StatusBar } from "react-native";
-import React ,{useEffect, useContext} from "react";
+import React ,{useEffect} from "react";
 import * as Animatable from 'react-native-animatable';
 import { useNavigation } from "@react-navigation/native";
 import firebase from '../firebase/config'
@@ -61,6 +61,7 @@ export default function Welcome() {
             {/* button e text */}
             <View style={styles.downView}>
                 <TextWelcome />
+                <View style = {{height: '6%'}}/>
                 <ButtonWelcome/>
             </View>
 
@@ -77,10 +78,9 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     downView: {
-        flex: 1,
-        justifyContent: 'space-evenly',
+        flex: 1.5,
+        justifyContent: 'center',
         alignItems: 'center',
-
     },
     buttonwelcome: {
         width: '50%',
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         paddingVertical: '5%',
-        borderRadius: 26
+        borderRadius: 30
     },
     textbuttonwelcome: {
         fontSize: 20

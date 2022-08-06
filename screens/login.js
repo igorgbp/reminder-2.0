@@ -13,9 +13,9 @@ export default function Login() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
-    const {loginFirebase, error} = useContext(authContext)
+    const { loginFirebase, error } = useContext(authContext)
 
-    const handleLogin = () =>{
+    const handleLogin = () => {
         loginFirebase(email, password)
     }
 
@@ -24,58 +24,60 @@ export default function Login() {
         <ImageBackground source={require('../assets/background_login.png')} resizeMode={'cover'} style={{ flex: 1 }}>
             <StatusBar barStyle="light-content" backgroundColor={'#2a2a2a'} />
             <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} style={{ flex: 1 }}>
-                
+
                 {/* imagem logo */}
                 <View style={styles.imageView}>
                     <Animatable.Image
                         animation={'fadeIn'}
                         source={require('../assets/erased_logo_reminder.png')}
                         resizeMode='contain'
-                        style={styles.image}/>
+                        style={styles.image} />
                 </View>
 
                 {/* form e buttons */}
                 <View style={styles.formView}>
 
                     {/* inputs */}
-                    <InputUser placeHolder='Email' onChangeText={setEmail} valor={email}/>
+                    <InputUser placeHolder='Email' onChangeText={setEmail} valor={email} />
                     <InputUser placeHolder='Password' onChangeText={setPassword} valor={password} pass={true} />
 
+                    {/* <View > */}
 
-                    {/* erro ao logar */}
-                    <View style={styles.errorLogin}>
-                        {error === true
+
+                        {/* erro ao logar */}
+                        <View style={styles.errorLogin}>
+                            {error === true
+                                ?
+                                <Text style={styles.errorLoginText}>Email ou senha incorretos</Text>
+                                :
+                                <Text></Text>
+                            }
+                        </View>
+
+
+                        {/* botão de entrar */}
+                        {email === '' || password === ''
                             ?
-                            <Text style={styles.errorLoginText}>Email ou senha incorretos</Text>
+                            <TouchableOpacity style={styles.disablebutton} disabled={true}>
+                                <Text style={{ fontSize: 16, color: '#2f2f2f' }}>Entrar</Text>
+                            </TouchableOpacity>
                             :
-                            <Text></Text>
+                            <TouchableOpacity style={styles.enablebutton} onPress={() => handleLogin()}>
+                                <Text style={{ fontSize: 16 }}>Entrar</Text>
+                            </TouchableOpacity>
                         }
-                    </View>
-
-
-                    {/* botão de entrar */}
-                    {email === '' || password === ''
-                        ?
-                        <TouchableOpacity style={styles.disablebutton} disabled={true}>
-                            <Text style={{ fontSize: 16, color: '#2f2f2f' }}>Entrar</Text>
-                        </TouchableOpacity>
-                        :
-                        <TouchableOpacity style={styles.enablebutton} onPress = {()=> handleLogin()}>
-                            <Text style={{ fontSize: 16 }}>Entrar</Text>
-                        </TouchableOpacity>
-                    }
-
+                    {/* </View> */}
                     {/* opção de cadastro */}
-                    <View style = {styles.signupContainer}>
+                    <View style={styles.signupContainer}>
                         <Text style={styles.question}>Não tem uma conta?</Text>
                         <TouchableOpacity style={styles.signupbutton} onPress={() => navigation.navigate('Signup')}>
-                            <Text style={{fontSize: 16}}>Cadastre-se</Text>
+                            <Text style={{ fontSize: 16 }}>Cadastre-se</Text>
                         </TouchableOpacity>
                     </View>
 
 
                 </View>
-                
+
             </KeyboardAvoidingView>
         </ImageBackground>
     )
@@ -86,10 +88,15 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'flex-end',
         alignItems: 'center',
+        // borderWidth:2, 
+        // borderColor: 'blue'
     },
     formView: {
-        flex: 1,
+        flex: 1.3,
         alignItems: 'center',
+        // borderWidth: 2, 
+        // borderColor: 'yellow',
+        justifyContent: 'flex-start'
 
     },
     image: {
@@ -120,17 +127,17 @@ const styles = StyleSheet.create({
         fontSize: 14,
         color: '#FE9393'
     },
-    signupContainer:{
-        alignItems: 'center', 
-        justifyContent:'center',
-        marginTop:30
+    signupContainer: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: '2%'
     },
-    question:{
-        color:'#FFF', 
-        fontSize:16,
-        marginBottom:6
+    question: {
+        color: '#FFF',
+        fontSize: 16,
+        marginBottom: 6
     },
-    signupbutton:{
+    signupbutton: {
         backgroundColor: '#A6CCD6',
         borderRadius: 26,
         paddingHorizontal: 20,
