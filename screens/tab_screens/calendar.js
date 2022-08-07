@@ -34,14 +34,14 @@ export default function CalendarScreen() {
 
 
     return (
-
         <View style={{ flex: 1, backgroundColor: '#22223b' }}>
-
+            
+            {/* calendario */}
             <View style={styles.background}>
-                {/* calendario */}
                 <CalendarComponent />
             </View>
 
+            {/* new reminder */}
             <Modal
                 visible={modalVisible}
                 avoidKeyboard={true}
@@ -55,6 +55,7 @@ export default function CalendarScreen() {
                 <NewReminder />
             </Modal>
 
+            {/* edit reminder */}
             <Modal
                 visible={editVisible}
                 avoidKeyboard={true}
@@ -66,18 +67,19 @@ export default function CalendarScreen() {
                 <EditReminder item={itemSelected} />
             </Modal>
 
+            {/* options */}
             <Modal
                 visible={optionsVisible}
                 avoidKeyboard={true}
                 hasBackdrop={true}
                 backdropOpacity={optionsVisible ? 0.5 : 0.51}
                 backdropColor={'#000'}
-                // onBackdropPress={() => setOptionsVisible(false)}
+                onBackdropPress={() => setOptionsVisible(false)}
                 style={styles.modal}>
                 <Options />
             </Modal>
 
-
+            {/* list of reminders */}
             <View style={styles.flatlistContainer}>
                 <FlatList
                     style={styles.lista}
@@ -105,12 +107,10 @@ export default function CalendarScreen() {
                 />
             </View>
 
+            {/* add reminder button */}
             <ButtonPlus />
 
         </View>
-
-
-
     )
 }
 

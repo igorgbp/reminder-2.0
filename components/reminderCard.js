@@ -9,7 +9,7 @@ let d
 
 export function ReminderCardCalendar(props) {
 
-    const { deleteReminder, setEditVisible, dateEnable, } = useContext(authContext)
+    const { setEditVisible } = useContext(authContext)
     // const { pressedDay, pressedFormat } = useContext(DatesContext)
 
     let document = props.item

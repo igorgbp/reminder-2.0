@@ -12,6 +12,7 @@ export default function NewReminder() {
     const [inputNote, setInputNote] = useState('')
     const [datePicked, setDatePicked] = useState(new Date())
 
+    const [showCalendarAndroid, setShowCalenarAndroid] = useState(false)
     const [dateEnable, setDateEnable] = useState(false)
 
     const { userId, setButtonSaveEnabled, setModalVisible } = useContext(authContext)
@@ -62,11 +63,15 @@ export default function NewReminder() {
                     <View style={styles.dateSwitch}>
                         <Text style={{ color: '#f2e9e4', fontSize: 16 }}>Date</Text>
                         <Switch style={styles.switch} value={dateEnable}
-                            onValueChange={() => setDateEnable(!dateEnable)}
-                            trackColor={{ true: '#9a8c98' }} />
+                            onValueChange={(value) => {setDateEnable(!dateEnable), 
+                                 value==true? setShowCalenarAndroid(true):null
+                                }}
+                            trackColor={{ true: '#9a8c98' }} thumbColor={'#f2e9e4'}
+                            
+                            />
                     </View>
 
-                    <DateSelect previousDate = {null} onChangeDate={setDatePicked} disabled={dateEnable} />
+                    <DateSelect previousDate = {null} onChangeDate={setDatePicked} disabled={dateEnable} showCalendar={showCalendarAndroid} setShowCalendar={setShowCalenarAndroid} />
 
                 </View>
 
@@ -81,10 +86,7 @@ export default function NewReminder() {
                 <ButtonSave text='Save' press={Save}/>
             
             </View>
-
-
-
-
+            
 
         </View>
     )
@@ -96,18 +98,24 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         width: '100%',
         backgroundColor: '#22223b',
-        alignItems: 'stretch',
+        // alignItems: 'stretch',
+        // borderWidth:2, 
+        // borderColor:'blue'
     },
     avoidingview: {
 
         paddingHorizontal: '5%',
+        // paddingBottom: 0,
         alignSelf: 'center',
-        paddingVertical: '0%',
+        paddingVertical: '1%',
         borderRadius: 20,
         width: '90%',
         justifyContent: 'center',
+        // height: 20,
         backgroundColor: '#3F425A',
-        alignItems: 'center'
+        alignItems: 'center',
+        // borderWidth: 2, 
+        // borderColor: 'blue'
     },
     pickerAndDate: {
         alignItems: 'center',
@@ -123,6 +131,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         width: '100%',
         alignItems: 'center',
+        // borderWidth: 2, 
+        // borderColor: 'blue'
     },
     switch: {
         marginLeft: 5,

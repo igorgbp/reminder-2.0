@@ -24,6 +24,13 @@ function DatesProvider({ children }) {
             // console.log(day.dateString) 
             )   
     }
+    
+    function markCalendar(){
+        return (
+            setPressedDay({['2022-08-26']:{selected:true}})
+        )
+        
+    }
 
     function todayFormatDate() {
         let d = new Date(),
@@ -39,7 +46,7 @@ function DatesProvider({ children }) {
 
 
     return (
-        <DatesContext.Provider value={{ todayFormatDate, pressedFormat, markDayPressed, pressedDay, dayComparison }}>
+        <DatesContext.Provider value={{ todayFormatDate, pressedFormat, markDayPressed, pressedDay, dayComparison, markCalendar }}>
             {children}
         </DatesContext.Provider>
     )

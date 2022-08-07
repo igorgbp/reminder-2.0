@@ -1,5 +1,5 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Image, Modal, Text, TouchableOpacity } from "react-native";
+import { Image, Modal, StatusBar, Text, TouchableOpacity } from "react-native";
 import { View } from "react-native-animatable";
 import DatesProvider from "../contexts/date";
 import CalendarScreen from "../screens/tab_screens/calendar";
@@ -18,7 +18,7 @@ LogBox.ignoreAllLogs();//Ignore all log notifications
 
 export default function Tabs() {
     const Tab = createBottomTabNavigator()
-    const { setOptionsVisible, findContent, seeDone, setSeeDone } = useContext(authContext)
+    const { setOptionsVisible, findContent, seeDone, setSeeDone, setInfoVisible } = useContext(authContext)
 
 
     useEffect(() => {
@@ -29,13 +29,13 @@ export default function Tabs() {
 
     function LogoHeader() {
         return (
-            <View  >
+            <TouchableOpacity onPress={()=> setInfoVisible(true)}>
                 <Image
                     source={require('../assets/logo_png_100x100.png')}
                     style={{ width: 65, height: 50, tintColor: '#f2e9e4' }}
                 />
 
-            </View>
+            </TouchableOpacity>
 
 
         )
@@ -58,7 +58,7 @@ export default function Tabs() {
 
     function Settings() {
         return (
-            <TouchableOpacity style={{ alignSelf: "center" }} onPress={() => setOptionsVisible(true)}>
+            <TouchableOpacity style={{ alignSelf: "center", }} onPress={() => setOptionsVisible(true)}>
                 <Text>
                     <Icon name="user-astronaut" size={40} color="#f2e9e4" />;
                 </Text>
@@ -70,26 +70,29 @@ export default function Tabs() {
     return (
 
         <DatesProvider>
+            <StatusBar barStyle={'light-content'} backgroundColor= {'#22223b'}/>
             <Tab.Navigator screenOptions={({ route }) => ({
 
                 headerTitle: () => <LogoHeader />,
+                headerTitleAlign: 'center',
                 headerStyle: {
                     // justifyContent: 'center',
                     // alignItems: 'center',
                     backgroundColor: '#22223b',
                     shadowColor: 'transparent',
+                    // borderWidth: 2, 
+                    // borderColor: 'blue'
                 },
+                
 
                 headerLeft: () => <Concluded />,
                 headerRight: () => <Settings />,
-
-
-
-
+               
                 tabBarShowLabel: false,
                 tabBarStyle: {
                     backgroundColor: '#22223b',
-                    borderTopWidth: 0
+                    borderTopWidth: 0, 
+                    // height: '10%'
                 },
                 tabBarIcon: ({ color, size }) => {
                     let iconName;
@@ -106,14 +109,16 @@ export default function Tabs() {
 
                     return <Icon name={iconName} size={40} color={color} />;
                 },
-
+                
 
 
 
             })}
+            
                 tabBarOptions={{
                     activeTintColor: '#f2e9e4',
                     inactiveTintColor: '#4a4e69',
+                    
                 }}
             >
 

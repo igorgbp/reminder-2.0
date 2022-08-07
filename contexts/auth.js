@@ -11,6 +11,7 @@ function AuthProvider({ children }) {
     const [info, setInfo] = useState()
     const navigation = useNavigation()
     const database = firebase.firestore()
+    const [infoVisible, setInfoVisible] = useState(false)
     const [optionsVisible, setOptionsVisible] = useState(false)
     const [modalVisible, setModalVisible] = useState(false)
     const [editVisible, setEditVisible] = useState(false)
@@ -18,6 +19,7 @@ function AuthProvider({ children }) {
     const [nameUser, setNameUser] = useState('asdf')
     const [itemSelected, setItemSelected ] = useState({})
     const [seeDone, setSeeDone] = useState('false')
+    // const [showCalendarAndroid, setShowCalendarAndroid] = useState()
     const loginFirebase = (email, password) => {
         firebase.auth().signInWithEmailAndPassword(email, password)
             .then((userCredential) => {
@@ -119,7 +121,8 @@ function AuthProvider({ children }) {
             itemSelected, setItemSelected,
             optionsVisible, setOptionsVisible,
             logOut,nameUser,doneReminder,
-            seeDone, setSeeDone
+            seeDone, setSeeDone,
+            infoVisible, setInfoVisible
             }}>
 
             {children}

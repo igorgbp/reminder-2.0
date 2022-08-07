@@ -5,11 +5,15 @@ import { StyleSheet } from "react-native"
 export function InputReminderLarger(props) { 
     return (
         <TextInput style={styles.inputLarger} multiline={true}
-            numberOfLines={Platform.OS === 'ios' ? null : 5}
-            maxHeight={(Platform.OS === 'ios') ? (20 * 5) : null}
+            numberOfLines={Platform.OS === 'ios' ? null : 1}
+            maxHeight={(Platform.OS === 'ios') ? (20 * 5) : (20*5)}
             onChangeText={(text) => { props.onChangeText(text) }}
             placeholder='Note' placeholderTextColor={'#4a4e69'}
             value = {props.value}
+            // onChange={(event) => {
+            //     ({height: event.nativeEvent.contentSize.height});
+            //     }}
+            // onContentSizeChange={()=>}
             >
 
         </TextInput>
@@ -43,6 +47,7 @@ const styles = StyleSheet.create({
     inputLarger: {
         paddingBottom: 10,
         paddingTop: 8,
+        justifyContent: 'flex-start',
         paddingRight: 15,
         paddingLeft: 20,
         borderBottomLeftRadius: 10,
@@ -51,7 +56,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#9a8c98',
         color: '#22223b',
         fontSize: 16,
-        textAlign: 'flex-start',
+        // textAlign: 'flex-start',
         alignSelf: 'center',
     },
 

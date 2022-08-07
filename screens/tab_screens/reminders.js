@@ -7,6 +7,7 @@ import ButtonPlus from "../../components/buttonPlus";
 import ReminderCard from "../../components/reminderCard";
 import EditReminder from "../edit_reminder";
 import Options from "../options";
+import Info from "../info";
 
 export default function ReminderScreen() {
 
@@ -19,13 +20,15 @@ export default function ReminderScreen() {
         editVisible,
         itemSelected,
         setItemSelected,
-        seeDone }
+        seeDone,
+        infoVisible,
+        setInfoVisible }
         = useContext(authContext)
 
-        let filter = info.filter((item)=>item.done==false)
-        // console.log('aqui   aqui     aqui    aqui')
-        // console.log(filter)
-        // console.log('aqui   aqui     aqui    aqui')
+    let filter = info.filter((item) => item.done == false)
+    // console.log('aqui   aqui     aqui    aqui')
+    // console.log(filter)
+    // console.log('aqui   aqui     aqui    aqui')
 
 
     return (
@@ -68,23 +71,33 @@ export default function ReminderScreen() {
                 style={styles.modal}>
                 <Options />
             </Modal>
+            <Modal
+                visible={infoVisible}
+                avoidKeyboard={true}
+                hasBackdrop={true}
+                backdropOpacity={infoVisible ? 0.5 : 0.51}
+                backdropColor={'#000'}
+                onBackdropPress={() => setInfoVisible(false)}
+                style={styles.modal}>
+                <Info />
+            </Modal>
 
             <View style={styles.flatlistContainer}>
                 <FlatList
                     style={styles.lista}
-                    data={!seeDone==false?  info:filter}
+                    data={!seeDone == false ? info : filter}
                     numColumns={2}
                     columnWrapperStyle={{ height: 120, marginBottom: 6 }}
                     renderItem={({ item }) => {
-                        
-                            return (
 
-                                <View style={{ width: '50%' }}>
-                                    <ReminderCard wid={'95%'} item={item} selectedItem={setItemSelected} />
-                                </View>
-                            )
-                        
-                        
+                        return (
+
+                            <View style={{ width: '50%' }}>
+                                <ReminderCard wid={'95%'} item={item} selectedItem={setItemSelected} />
+                            </View>
+                        )
+
+
 
                     }}
                 />
