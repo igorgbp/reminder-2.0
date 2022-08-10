@@ -5,31 +5,50 @@ import { useNavigation } from '@react-navigation/native'
 export const DatesContext = createContext({})
 
 function DatesProvider({ children }) {
-    
-    const [pressedDay, setPressedDay] = useState()
 
+    const [pressedDay, setPressedDay] = useState()
+    const [marksCalendar, setMarksCalendar] = useState()
+    // let teste = []
+    // const [teste, setTeste] = useState()
     const [pressedFormat, setPressedFormat] = useState('nada')
-    const  dayComparison=(day)=>{
+
+
+    // const vacation = { key: 'vacation', color: 'red', selectedDotColor: 'blue' };
+    // const massage = { key: 'massage', color: 'blue', selectedDotColor: 'blue' };
+    // const workout = { key: 'workout', color: 'green' };
+
+
+    const dayComparison = (day) => {
 
 
         // console.log('j  j   j   j   j   j   j   ')
-            setPressedFormat(day.day + '/' + day.month + '/' + day.year)
+        setPressedFormat(day.day + '/' + day.month + '/' + day.year)
         //    console.log(pressedFormat)
-        
+
     }
-    
+
     function markDayPressed(day) {
-        return (    
-            setPressedDay({ [day.dateString] : {selected:true} }) 
-            // console.log(day.dateString) 
-            )   
-    }
-    
-    function markCalendar(){
+        setPressedDay({ [day.dateString]: { selected: true } })
+        // let a = pressedDay
+
+        // let c = [].concat(pressedDay, marksCalendar)
+
+        // console.log
+        // console.log('j  j   j   j   j   j   j   j   j   j')
+
         return (
-            setPressedDay({['2022-08-26']:{selected:true}})
+            console.log('ok')
         )
-        
+    }
+
+    function markCalendar() {
+
+        return (
+            // null
+
+            setMarksCalendar({ ['2022-08-26']: {selected:true} })
+        )
+
     }
 
     function todayFormatDate() {
@@ -46,7 +65,7 @@ function DatesProvider({ children }) {
 
 
     return (
-        <DatesContext.Provider value={{ todayFormatDate, pressedFormat, markDayPressed, pressedDay, dayComparison, markCalendar }}>
+        <DatesContext.Provider value={{  todayFormatDate, pressedFormat, markDayPressed, pressedDay, dayComparison, markCalendar, marksCalendar, setMarksCalendar }}>
             {children}
         </DatesContext.Provider>
     )

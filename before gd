@@ -1,0 +1,107 @@
+[33mcommit 07171b431125d91140e3d7b83a554ad162a0be45[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: igor <igorgabriel12bq@gmail.com>
+Date:   Sun Aug 7 16:21:15 2022 -0300
+
+    before gd
+
+[33mcommit e9731a057d9606fe31296c4d4605201a031c3aa9[m
+Author: igor <igorgabriel12bq@gmail.com>
+Date:   Sat Aug 6 17:17:29 2022 -0300
+
+    some fixes for android version, on welcome and login screens
+
+[33mcommit 26b2ca8ae2c64f1277248664298c6017b14a05b9[m
+Author: igor <igorgabriel12bq@gmail.com>
+Date:   Thu Aug 4 23:22:10 2022 -0300
+
+    options added
+
+[33mcommit 5f4470e624438a3ab6c24ca5e664b7245327d029[m
+Author: igor <igorgabriel12bq@gmail.com>
+Date:   Wed Aug 3 23:58:46 2022 -0300
+
+    melhora design e adição de modal do user
+
+[33mcommit 49c3573a65ede1934a177ca1977a6dd149cae8d3[m
+Author: igor <igorgabriel12bq@gmail.com>
+Date:   Mon Aug 1 01:18:12 2022 -0300
+
+    improves
+
+[33mcommit 777dc285c237c1926bcfbe3ed2a3544f701d2330[m
+Author: igor <igorgabriel12bq@gmail.com>
+Date:   Sun Jul 24 20:43:12 2022 -0300
+
+    tema e adições
+
+[33mcommit d514bac1616923a2a6a588612eee9e5b85f65228[m
+Author: igor <igorgabriel12bq@gmail.com>
+Date:   Sun Jul 24 00:16:57 2022 -0300
+
+    melhoras e adições
+
+[33mcommit 407bd915ee013f47d2b7c28510b9573748618441[m
+Author: igor <igorgabriel12bq@gmail.com>
+Date:   Fri Jul 22 19:07:27 2022 -0300
+
+    some changes
+
+[33mcommit d69d680c774e2a9ac43274de2309fc2738bb0b96[m
+Author: igor <igorgabriel12bq@gmail.com>
+Date:   Fri Jul 22 14:17:54 2022 -0300
+
+    some changes
+
+[33mcommit 8768304641cb381688b685be10d76714fccb96df[m
+Author: igor <igorgabriel12bq@gmail.com>
+Date:   Wed Jul 20 20:25:39 2022 -0300
+
+    new reminder added
+
+[33mcommit 11c38027e75cba8ddc313d5eae79aebd5863d66f[m
+Author: igor <igorgabriel12bq@gmail.com>
+Date:   Tue Jul 19 20:11:06 2022 -0300
+
+    new reminder começo
+
+[33mcommit 6f753343d9f98860aa23f82126c22dc5b631860d[m
+Author: igor <igorgabriel12bq@gmail.com>
+Date:   Sun Jul 17 17:41:44 2022 -0300
+
+    adding name and fixes
+
+[33mcommit 25a8e0f984580f49d86b84d89c3b5f76bbf38a4f[m
+Author: igor <igorgabriel12bq@gmail.com>
+Date:   Sun Jul 17 12:43:00 2022 -0300
+
+    calendar day pressed fixed
+
+[33mcommit faa2c2d95353a945be0647dd675a7a3562a73efd[m
+Author: igor <igorgabriel12bq@gmail.com>
+Date:   Sun Jul 17 02:18:40 2022 -0300
+
+    login e signup resolvidos, começo do calendario
+
+[33mcommit 0ddf3b858a1a72b9d82e3f64071aa4728c2b3417[m
+Author: igor <igorgabriel12bq@gmail.com>
+Date:   Sat Jul 16 20:45:03 2022 -0300
+
+    context adicionado
+
+[33mcommit d9d045928938700d80fbaa1d8824f3b537332f5d[m
+Author: igor <igorgabriel12bq@gmail.com>
+Date:   Sat Jul 16 18:43:24 2022 -0300
+
+    loginok
+
+[33mcommit 9a72906634740baf59acb0adaf3d2daa5fc05188[m
+Author: igor <igorgabriel12bq@gmail.com>
+Date:   Sat Jul 16 15:00:59 2022 -0300
+
+    iniciando
+
+[33mcommit 2199cdbc5211674a14763bd04f78025a60e55582[m
+Author: igor <igorgabriel12bq@gmail.com>
+Date:   Fri Jul 15 14:22:58 2022 -0300
+
+    Created a new Expo app
