@@ -13,6 +13,7 @@ import Options from "../options";
 
 
 export default function CalendarScreen() {
+    console.log('calendar.js executa')
 
     const {
         info,
@@ -25,12 +26,15 @@ export default function CalendarScreen() {
         itemSelected }
         = useContext(authContext)
 
-    const { pressedFormat } = useContext(DatesContext)
+    const { pressedFormat, markCalendar } = useContext(DatesContext)
 
 
     // let infoFiltered = info.filter((item) => item.done == false)
     // console.log(infoFiltered)
-
+    
+    // useEffect(()=>{
+    //     markCalendar()
+    // },[])
 
 
     return (
@@ -87,6 +91,7 @@ export default function CalendarScreen() {
                     numColumns={1}
                     // columnWrapperStyle={{ height: 120, marginBottom:6}}
                     renderItem={({ item }) => {
+                        // console.log('flatlist at calendar executa')
                         let dateString
                         if (item.date != null) {
 

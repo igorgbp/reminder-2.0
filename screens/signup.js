@@ -60,11 +60,11 @@ export default function Signup() {
                     {email === '' || password === '' || name === ''
                         ?
                         <TouchableOpacity style={styles.disablebutton} disabled={true}>
-                            <Text style={{ fontSize: 16, color: '#2f2f2f' }}>Cadastrar-se</Text>
+                            <Text style={{ fontSize: 16, color: '#4a4e69' }}>Cadastrar-se</Text>
                         </TouchableOpacity>
                         :
                         <TouchableOpacity style={styles.enablebutton} onPress = {()=> handleSignup()}>
-                            <Text style={{ fontSize: 16 }}>Cadastrar-se</Text>
+                            <Text style={{ fontSize: 16, color:'#22223b' }}>Cadastrar-se</Text>
                         </TouchableOpacity>
                     }
 
@@ -96,10 +96,11 @@ const styles = StyleSheet.create({
     image: {
         width: '50%',
         height: '50%',
-        marginBottom: 20
+        marginBottom: 20, 
+        tintColor: '#c9ada7'
     },
     disablebutton: {
-        backgroundColor: '#4b4b4b',
+        backgroundColor: '#333549',
         borderRadius: 26,
         paddingHorizontal: 20,
         alignContent: 'center',
@@ -107,7 +108,7 @@ const styles = StyleSheet.create({
         paddingVertical: 9,
     },
     enablebutton: {
-        backgroundColor: '#ABABAB',
+        backgroundColor: '#9a8c98',
         borderRadius: 26,
         paddingHorizontal: 20,
         alignContent: 'center',
@@ -127,17 +128,10 @@ const styles = StyleSheet.create({
         marginTop:30
     },
     question:{
-        color:'#FFF', 
+        color:'#9a8c98', 
         fontSize:16,
         marginBottom:6
     },
-    signupbutton:{
-        backgroundColor: '#A6CCD6',
-        borderRadius: 26,
-        paddingHorizontal: 20,
-        alignContent: 'center',
-        alignItems: 'center',
-        paddingVertical: 9,
-    }
+
 
 })

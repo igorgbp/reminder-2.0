@@ -5,6 +5,7 @@ import { useNavigation } from '@react-navigation/native'
 export const authContext = createContext({})
 
 function AuthProvider({ children }) {
+    console.log('auth.js executa')
 
     const [userId, setUserId] = useState()
     const [error, setError] = useState(false)
@@ -93,7 +94,7 @@ function AuthProvider({ children }) {
 
     function logOut (){
         firebase.auth().signOut().then(() => {
-            navigation.navigate('Login')
+            navigation.navigate('Welcome')
         }).catch((error) => {
             console.log('error')
         })

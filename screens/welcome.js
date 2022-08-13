@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
     },
     buttonwelcome: {
         width: '50%',
-        backgroundColor: '#FFF',
+        backgroundColor: '#f2e9e4',
         alignItems: 'center',
         justifyContent: 'center',
         paddingVertical: '5%',

@@ -59,11 +59,11 @@ export default function Login() {
                         {email === '' || password === ''
                             ?
                             <TouchableOpacity style={styles.disablebutton} disabled={true}>
-                                <Text style={{ fontSize: 16, color: '#2f2f2f' }}>Entrar</Text>
+                                <Text style={{ fontSize: 16, color: '#3F425A' }}>Entrar</Text>
                             </TouchableOpacity>
                             :
                             <TouchableOpacity style={styles.enablebutton} onPress={() => handleLogin()}>
-                                <Text style={{ fontSize: 16 }}>Entrar</Text>
+                                <Text style={{ fontSize: 16, color:'#f2e9e4' }}>Entrar</Text>
                             </TouchableOpacity>
                         }
                     {/* </View> */}
@@ -102,10 +102,11 @@ const styles = StyleSheet.create({
     image: {
         width: '50%',
         height: '50%',
-        marginBottom: 20
+        marginBottom: 20, 
+        tintColor: '#c9ada7'
     },
     disablebutton: {
-        backgroundColor: '#4b4b4b',
+        backgroundColor: '#333549',
         borderRadius: 26,
         paddingHorizontal: 20,
         alignContent: 'center',
@@ -113,7 +114,7 @@ const styles = StyleSheet.create({
         paddingVertical: 9,
     },
     enablebutton: {
-        backgroundColor: '#ABABAB',
+        backgroundColor: '#4a4e69',
         borderRadius: 26,
         paddingHorizontal: 20,
         alignContent: 'center',
@@ -138,7 +139,7 @@ const styles = StyleSheet.create({
         marginBottom: 6
     },
     signupbutton: {
-        backgroundColor: '#A6CCD6',
+        backgroundColor: '#c9ada7',
         borderRadius: 26,
         paddingHorizontal: 20,
         alignContent: 'center',

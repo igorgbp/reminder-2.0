@@ -10,6 +10,7 @@ import Options from "../options";
 import Info from "../info";
 
 export default function ReminderScreen() {
+    console.log('reminder.js executa')
 
 
     const {

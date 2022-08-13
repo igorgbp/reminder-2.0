@@ -11,7 +11,7 @@ export default function InputUser(props){
     return (
         <TextInput style = {styles.input}
             placeholder= {props.placeHolder}
-            placeholderTextColor= {'#767676'}
+            placeholderTextColor= {'#333549'}
             onChangeText = {(text)=>{props.onChangeText(text); setError(false)}}
             secureTextEntry = {props.pass}
         >
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
         paddingVertical: '4%',
         borderRadius: 26,
         width: '70%',
-        backgroundColor: '#504d4d',
+        backgroundColor: '#4a4e69',
         color: '#FFF',
         fontSize: 18,
         textAlign:'center',

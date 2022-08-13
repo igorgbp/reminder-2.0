@@ -13,6 +13,7 @@ import Tabs from "./tab";
 
 const Stack = createStackNavigator();
 export default function Navigate() {
+    console.log('navigate.js executa')
     return (
 
 
@@ -23,7 +24,9 @@ export default function Navigate() {
                 <Stack.Screen
                     name='Welcome'
                     component={Welcome}
-                    options={{ headerShown: false }}
+                    options={{ headerShown: false,
+                        gestureEnabled: false
+                    }}
                 />
                 <Stack.Screen
                     name='Login'

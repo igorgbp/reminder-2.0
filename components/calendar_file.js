@@ -4,18 +4,24 @@ import { useContext } from "react"
 import { DatesContext } from "../contexts/date"
 import { View } from "react-native"
 
-export default function CalendarComponent() {
+export default  function CalendarComponent() {
+    console.log('calendar_file.js executa')
+
     const { marksCalendar, todayFormatDate, markDayPressed, pressedDay,dayComparison, markCalendar, } = useContext(DatesContext)
 
     useEffect(()=>{
-        markCalendar()
-    }, [])
-
-
-    console.log('j  j   j   j   j   j   j   j   j   j   j')
-    console.log(pressedDay)
+        console.log('useeffect')
+        // markCalendar()
+        
+    },[])
+    // let b = marcados
+    console.log('aa ss  ss  ss  ss  ')
     console.log(marksCalendar)
-    let returnedTarget = Object.assign(pressedDay, marksCalendar)
+    // console.log(markCalendar())
+    // console.log('j  j   j   j   j   j   j   j   j   j   j')
+    // console.log(pressedDay)
+    // console.log(marksCalendar)
+    // let returnedTarget = Object.assign(pressedDay, marksCalendar)
     // console.log(returnedTarget)
     return (
 
@@ -26,7 +32,8 @@ export default function CalendarComponent() {
             initialDate={todayFormatDate()}
             minDate={todayFormatDate()}
             onDayPress={day => { markDayPressed(day); dayComparison(day)}}
-            markedDates={pressedDay}
+            // markedDates={pressedDay}
+            markedDates= {marksCalendar}
             markingType={'multi-dot'}
             monthFormat={'MMMM'}
             // style= {{borderWidth: 2, height: '75%',

@@ -1,7 +1,7 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Image, Modal, StatusBar, Text, TouchableOpacity } from "react-native";
 import { View } from "react-native-animatable";
-import DatesProvider from "../contexts/date";
+import DatesProvider, { DatesContext } from "../contexts/date";
 import CalendarScreen from "../screens/tab_screens/calendar";
 import ReminderScreen from "../screens/tab_screens/reminders";
 import Icon from 'react-native-vector-icons/FontAwesome5';
@@ -17,9 +17,10 @@ LogBox.ignoreAllLogs();//Ignore all log notifications
 
 
 export default function Tabs() {
+    console.log('tab.js executa')
     const Tab = createBottomTabNavigator()
     const { setOptionsVisible, findContent, seeDone, setSeeDone, setInfoVisible } = useContext(authContext)
-
+    // const {markDayPressed} = useContext(DatesContext)
 
     useEffect(() => {
         findContent()
