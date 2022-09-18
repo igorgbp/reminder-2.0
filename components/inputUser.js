@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { TextInput,StyleSheet } from "react-native";
 import { useContext } from "react";
 import { authContext } from "../contexts/auth";
 
 export default function InputUser(props){
-
    
     const {setError} =  useContext(authContext)
 
@@ -14,9 +13,8 @@ export default function InputUser(props){
             placeholderTextColor= {'#333549'}
             onChangeText = {(text)=>{props.onChangeText(text); setError(false)}}
             secureTextEntry = {props.pass}
-        >
+        />
 
-        </TextInput>
     )
 }
 const styles = StyleSheet.create({

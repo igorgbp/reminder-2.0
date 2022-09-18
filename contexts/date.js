@@ -1,23 +1,18 @@
-import React, { createContext, useContext,  useState } from "react";
+import React, { createContext, useContext,  useState, } from "react";
 import { authContext } from "./auth";
+import { memo } from "react";
+
 
 export const DatesContext = createContext({})
 
-
 function DatesProvider({ children }) {
-console.log('date.js executa')
-
-    const { info } = useContext(authContext)
+    
+    const { info} = useContext(authContext)
 
     let marcados = {}
     const [marksCalendar, setMarksCalendar] = useState()
-
-    const [pressedFormat, setPressedFormat] = useState('nada')
-
-
-    const vacation = { key: 'vacation', color: 'red', selectedDotColor: 'blue' };
-    const massage = { key: 'massage', color: 'blue', selectedDotColor: 'blue' };
-    const workout = { key: 'workout', color: 'green' };
+    const [pressedFormat, setPressedFormat] = useState('')
+    const dot = { key: 'vacation', color: '#eab', selectedDotColor: 'blue' };
 
 
     const dayComparison = (day) => {
@@ -26,28 +21,21 @@ console.log('date.js executa')
 
 
     function markDayPressed(day) {
-        console.log('markDayPressed executa')
         markCalendar()
+        console.log('-0-0-0-0-0--0-0-0--0-0--0-')
+        console.log(day)
+        console.log('-0-0-0-0-0--0-0-0--0-0--0-')
+        
         marcados[day.dateString] = {selected:true}
-        // setPressedDay({ [day.dateString]: { selected: true } })
-       
        setMarksCalendar(marcados)
-        // let a = pressedDay
-
-
-        // let c = [].concat(pressedDay, marksCalendar)
-
-        // console.log
-        // console.log('j  j   j   j   j   j   j   j   j   j')
 
         return (
-            console.log('markDayPressed sendo executado')
+            null
         )
     }
 
     function markCalendar() {
 
-        console.log('markCalendar sendo executado')
         if (info != undefined) {
 
 
@@ -57,17 +45,12 @@ console.log('date.js executa')
                     let dateDocument = new Date(item.date.seconds * 1000)
                     let month
                     let dayItem
-                    // console.log(dateDocument.getDate())
-                    // if ((dateDocument.getMonth() + 1)<10) month = '0'+(dateDocument.getMonth() + 1)<10; else (dateDocument.getMonth() + 1)<10
+
                     (dateDocument.getMonth() + 1) < 10 ? month = '0' + (dateDocument.getMonth() + 1) : (dateDocument.getMonth() + 1)
-                    if (dateDocument.getDate() < 10) dayItem = '0' + dateDocument.getDate(); else dateDocument.getDate()
-                    // console.log(dayItem)
-                    dateString = dateDocument.getFullYear() + '-' + month + '-' + dateDocument.getDate()
-                    // setMarksCalendar({ [dateString]: { selected: true } })
-
-                    // if (dateString!=undefined)marcados = [].concat(pressedDay, {[dateString]: { selected: true }})
-
-                    if (dateString!=undefined)marcados[dateString]={marked:true, dots:[vacation]}
+                    dateDocument.getDate()<10? dayItem = '0' + dateDocument.getDate() : dayItem = dateDocument.getDate()
+                    // if (dateDocument.getDate() < 10) dayItem = '0' + dateDocument.getDate(); else dateDocument.getDate()
+                    dateString = dateDocument.getFullYear() + '-' + month + '-' + dayItem
+                    if (dateString!=undefined)marcados[dateString]={marked:true, dots:[dot]}
 
 
                     // console.log(marcados)
@@ -100,4 +83,4 @@ console.log('date.js executa')
         </DatesContext.Provider>
     )
 }
-export default DatesProvider
+export default memo(DatesProvider)

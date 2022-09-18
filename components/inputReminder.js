@@ -10,16 +10,11 @@ export function InputReminderLarger(props) {
             onChangeText={(text) => { props.onChangeText(text) }}
             placeholder='Note' placeholderTextColor={'#4a4e69'}
             value = {props.value}
-            // onChange={(event) => {
-            //     ({height: event.nativeEvent.contentSize.height});
-            //     }}
-            // onContentSizeChange={()=>}
             >
 
         </TextInput>
     )
 }
-
 
 export default function InputReminder(props) {
     return (
@@ -30,6 +25,7 @@ export default function InputReminder(props) {
         </TextInput>
     )
 }
+
 
 const styles = StyleSheet.create({
     input: {

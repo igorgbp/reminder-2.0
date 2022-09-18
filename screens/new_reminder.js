@@ -8,6 +8,7 @@ import firebase from "../firebase/config"
 
 
 export default function NewReminder() {
+    console.log('new reminder executa 000000000000000')
     const [inputName, setInputName] = useState('')
     const [inputNote, setInputNote] = useState('')
     const [datePicked, setDatePicked] = useState(new Date())
@@ -44,12 +45,23 @@ export default function NewReminder() {
     if (inputName=='') setButtonSaveEnabled(false)
     else setButtonSaveEnabled(true)
 
+    console.log('----------info--------------')
+
+    console.log(inputName)
+
+    console.log('')
+
+    console.log('')
+
+    console.log('----------info--------------')
+
+
 
 
     return (
         <View style={styles.avoidingview}>
 
-            <StatusBar barStyle='light-content' backgroundColor={'#2a2a2a'} />
+            <StatusBar barStyle='light-content' backgroundColor={'#22223b'} />
             <View style={styles.view}>
 
                 <InputReminder onChangeText={setInputName} />

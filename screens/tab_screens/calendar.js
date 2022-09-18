@@ -26,15 +26,28 @@ export default function CalendarScreen() {
         itemSelected }
         = useContext(authContext)
 
-    const { pressedFormat, markCalendar } = useContext(DatesContext)
+    const { pressedFormat, markCalendar, markDayPressed } = useContext(DatesContext)
 
 
     // let infoFiltered = info.filter((item) => item.done == false)
     // console.log(infoFiltered)
     
-    // useEffect(()=>{
-    //     markCalendar()
-    // },[])
+    useEffect(()=>{
+         if (info != undefined) {
+        let dateDocument = new Date()
+        let day = []
+        let month
+        let dayItem
+
+        (dateDocument.getMonth() + 1) < 10 ? month = '0' + (dateDocument.getMonth() + 1) : (dateDocument.getMonth() + 1)
+        dateDocument.getDate() < 10 ? dayItem = '0' + dateDocument.getDate() : dayItem = dateDocument.getDate()
+        // if (dateDocument.getDate() < 10) dayItem = '0' + dateDocument.getDate(); else dateDocument.getDate()
+        // dateString = dateDocument.getFullYear() + '-' + month + '-' + dayItem
+        day.dateString = dateDocument.getFullYear() + '-' + month + '-' + dayItem
+        markDayPressed(day)
+    } else null
+    },[info])
+   
 
 
     return (
@@ -153,7 +166,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         height: '90%',
         alignItems: 'center',
-        marginTop: '13%'
+        marginTop: '4%',
     },
 
 })

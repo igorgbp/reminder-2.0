@@ -1,11 +1,11 @@
 import React, { createContext, useEffect, useState } from "react";
 import firebase from '../firebase/config'
+import { memo } from "react";
 import { useNavigation } from '@react-navigation/native'
 
 export const authContext = createContext({})
 
 function AuthProvider({ children }) {
-    console.log('auth.js executa')
 
     const [userId, setUserId] = useState()
     const [error, setError] = useState(false)
@@ -17,10 +17,12 @@ function AuthProvider({ children }) {
     const [modalVisible, setModalVisible] = useState(false)
     const [editVisible, setEditVisible] = useState(false)
     const [buttonSaveEnabled, setButtonSaveEnabled] = useState(false)
-    const [nameUser, setNameUser] = useState('asdf')
+    const [nameUser, setNameUser] = useState('')
     const [itemSelected, setItemSelected ] = useState({})
-    const [seeDone, setSeeDone] = useState('false')
-    // const [showCalendarAndroid, setShowCalendarAndroid] = useState()
+    const [seeDone, setSeeDone] = useState('')
+
+
+
     const loginFirebase = (email, password) => {
         firebase.auth().signInWithEmailAndPassword(email, password)
             .then((userCredential) => {
@@ -32,9 +34,7 @@ function AuthProvider({ children }) {
                 setError(true)
                 const errorCode = error.code;
                 const errorMessage = error.message;
-            }
-            )
-        
+            })    
     }
 
     function signupFirebase(email, password, name) {
@@ -63,18 +63,14 @@ function AuthProvider({ children }) {
             query.forEach((doc) => {
                 list.push({ ...doc.data(), id: doc.id })
             })
-
             let names = list.filter((item)=>item.nameDoc==true)
             let nameUs
             names.forEach((doc)=>{
                 nameUs = doc.name
             })
-
             let content = list.filter((item)=>item.nameDoc!=true)
-            // console.log(list)
             setNameUser(nameUs)
             setInfo(content)
-            // info.shift()
         })
     }
 
@@ -83,8 +79,6 @@ function AuthProvider({ children }) {
     }
 
     function doneReminder(id, docDone){
-        // console.log(docDone)
-        // console.log('aqui em cima')
         database.collection(userId).doc(id).update(
             {
                 done:!docDone
@@ -100,7 +94,6 @@ function AuthProvider({ children }) {
         })
     }
  
-
 
     return (
         <authContext.Provider 
@@ -119,11 +112,17 @@ function AuthProvider({ children }) {
             deleteReminder,
             editVisible, 
             setEditVisible,
-            itemSelected, setItemSelected,
-            optionsVisible, setOptionsVisible,
-            logOut,nameUser,doneReminder,
-            seeDone, setSeeDone,
-            infoVisible, setInfoVisible
+            itemSelected, 
+            setItemSelected,
+            optionsVisible, 
+            setOptionsVisible,
+            logOut,
+            nameUser,
+            doneReminder,
+            seeDone, 
+            setSeeDone,
+            infoVisible, 
+            setInfoVisible
             }}>
 
             {children}
@@ -131,4 +130,4 @@ function AuthProvider({ children }) {
         </authContext.Provider>
     )
 }
-export default AuthProvider
+export default memo(AuthProvider)

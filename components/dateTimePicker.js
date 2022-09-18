@@ -2,26 +2,19 @@ import { Platform } from "react-native";
 import { useState, React } from "react";
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
-// import { TouchableOpacity } from "react-native-gesture-handler";
-
-
-
-
 
 export function DateSelect(props) {
 
     let b = props.previousDate
-    // console.log(b)
-    // const [showCalendarAndroid, setShowCalenarAndroid] = useState(false)
+
     const [pickerDate, setPickerDate] = useState(props.previousDate != null ? new Date(props.previousDate) : new Date())
-    // const [pickerDate, setPickerDate] = useState(new Date())
+
 
     const onChange = (event, date) => {
         let currentdate = date
         setPickerDate(currentdate);
         props.onChangeDate(currentdate)
         props.setShowCalendar(false)
-        // console.log(pickerDate)
     }
 
     const Theme = () => {
@@ -30,18 +23,14 @@ export function DateSelect(props) {
             tema = 'light'
         else
             tema = 'light'
-
         return tema
     }
 
     let dateStringAndroid = pickerDate
     let newdate = dateStringAndroid.getDate() +'/'+dateStringAndroid.getMonth() +'/'+dateStringAndroid.getFullYear()
-    console.log(newdate)
     
 
-
     return (
-
         Platform.OS === 'android'
             ?
             // android
@@ -81,17 +70,8 @@ export function DateSelect(props) {
 
                 />
             </View>
-
-
-
-
-
     )
 }
-
-
-
-
 
 const styles = StyleSheet.create({
 

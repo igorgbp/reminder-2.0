@@ -1,17 +1,13 @@
 import { Text, TouchableOpacity, StyleSheet, View, ImageBackground } from "react-native";
-import React, { useState } from "react";
+import React from "react";
 import { useContext } from "react";
 import { authContext } from "../contexts/auth";
 import Icon from 'react-native-vector-icons/Foundation';
-import { DatesContext } from "../contexts/date";
-
 let d
 
 export function ReminderCardCalendar(props) {
 
     const { setEditVisible } = useContext(authContext)
-    // const { pressedDay, pressedFormat } = useContext(DatesContext)
-
     let document = props.item
      d = document.done
 
@@ -23,12 +19,8 @@ export function ReminderCardCalendar(props) {
 
     return (
 
+        <TouchableOpacity style={[styles.reminderContainer, { width: props.wid, backgroundColor: document.done?'#4A6961':'#694A5C'}]} onPress={() => { setEditVisible(true); props.selectedItem(document) }} >
 
-        <TouchableOpacity style={[styles.reminderContainer, { width: props.wid, }]} onPress={() => { setEditVisible(true); props.selectedItem(document) }} >
-
-
-
-            {/* <View style = {{height: '8%'}}/> */}
             <View style={styles.down}>
 
                 <Text style={styles.titulo} numberOfLines={2}>
@@ -47,7 +39,6 @@ export default function ReminderCard(props) {
     
     const { deleteReminder, setEditVisible, doneReminder } = useContext(authContext)
 
-
     let document = props.item
 
     let dateString
@@ -56,18 +47,16 @@ export default function ReminderCard(props) {
         dateString = dateDocument.getDate() + '/' + (dateDocument.getMonth() + 1) + '/' + dateDocument.getFullYear()
     }
 
-
-
-
     return (
-        <TouchableOpacity style={[styles.reminderContainer, { width: props.wid, backgroundColor: document.done?'#4A6961':'#694A5C' }]} onPress={() => { setEditVisible(true); props.selectedItem(document) }} >
+        <TouchableOpacity style={[styles.reminderContainer, { width: props.wid, backgroundColor: document.done?'#57694A':'#3F425A' }]} onPress={() => { setEditVisible(true); props.selectedItem(document) }} >
 
-
+            {/* name */}
             <Text style={styles.titulo} numberOfLines={2}>
                 {document.name}
             </Text>
-            {/* <View style = {{height: '8%'}}/> */}
+
             <View style={styles.down}>
+                {/* data */}
                 {
                     dateString != null
                         ?
@@ -76,25 +65,25 @@ export default function ReminderCard(props) {
                         </Text>
                         : <View style={{ height: '6%', width: 70 }} />
                 }
+
+                {/* buttons */}
                 <View style={{ flexDirection: 'row', alignSelf: 'flex-end' }}>
 
-                    <TouchableOpacity style={styles.iconTrash}
-                    onPress={()=>{doneReminder(document.id, document.done)}}
+                    <TouchableOpacity style={styles.iconTrash} onPress={()=>{doneReminder(document.id, document.done)}}
                         >
                         <Text >
                             <Icon name="check" size={40} color="#c9ada7" />
 
                         </Text>
                     </TouchableOpacity>
+
                     <View style={{ width: '3%' }} />
-                    <TouchableOpacity style={styles.iconTrash}
-                        onPress={() => deleteReminder(document.id)}>
+
+                    <TouchableOpacity style={styles.iconTrash} onPress={() => deleteReminder(document.id)}> 
                         <Text >
                             <Icon name="trash" size={40} color="#c9ada7" />
 
                         </Text>
-
-
                     </TouchableOpacity>
 
                 </View>

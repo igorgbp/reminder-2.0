@@ -19,13 +19,16 @@ LogBox.ignoreAllLogs();//Ignore all log notifications
 export default function Tabs() {
     console.log('tab.js executa')
     const Tab = createBottomTabNavigator()
-    const { setOptionsVisible, findContent, seeDone, setSeeDone, setInfoVisible } = useContext(authContext)
-    // const {markDayPressed} = useContext(DatesContext)
+    const { info, setOptionsVisible,  findContent, seeDone, setSeeDone, setInfoVisible } = useContext(authContext)
+    const {markDayPressed} = useContext(DatesContext)
 
     useEffect(() => {
         findContent()
+        // markDaypressed()
 
     }, [])
+
+ 
 
 
     function LogoHeader() {

@@ -5,6 +5,7 @@ import { authContext } from "../contexts/auth";
 
 export default function ButtonSave(props) {
     const { setModalVisible, buttonSaveEnabled, setEditVisible } = useContext(authContext)
+   
     if (buttonSaveEnabled) {
         return (
             <TouchableOpacity style={styles.touchable}
@@ -24,8 +25,6 @@ export default function ButtonSave(props) {
             </TouchableOpacity>
         )
     }
-
-
 }
 
 const styles = StyleSheet.create({

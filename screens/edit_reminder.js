@@ -51,7 +51,7 @@ export default function EditReminder(props) {
     return (
         <View style={styles.avoidingview}>
 
-            <StatusBar barStyle='light-content' backgroundColor={'#2a2a2a'} />
+            <StatusBar barStyle='light-content' backgroundColor={'#22223b'} />
             <View style={styles.view}>
 
                 <InputReminder onChangeText={setInputName} value={inputName} />
